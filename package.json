@@ -7,8 +7,12 @@
     "lint": "prettier --check \"src/**/*.{js,jsx}\""
   },
   "dependencies": {
+    "@snowpack/plugin-postcss": "^1.1.0",
+    "autoprefixer": "^10.2.4",
+    "postcss": "^8.2.6",
     "react": "^17.0.0",
-    "react-dom": "^17.0.0"
+    "react-dom": "^17.0.0",
+    "tailwindcss": "^2.0.3"
   },
   "devDependencies": {
     "@snowpack/plugin-dotenv": "^2.0.5",
