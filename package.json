@@ -7,11 +7,21 @@
     "lint": "prettier --check \"src/**/*.{js,jsx}\""
   },
   "dependencies": {
+    "@apollo/client": "^3.3.11",
+    "@fortawesome/fontawesome-svg-core": "^1.2.34",
+    "@fortawesome/free-solid-svg-icons": "^5.15.2",
+    "@fortawesome/react-fontawesome": "^0.1.14",
     "@snowpack/plugin-postcss": "^1.1.0",
     "autoprefixer": "^10.2.4",
+    "graphql": "^15.5.0",
+    "node-fetch": "^2.6.1",
     "postcss": "^8.2.6",
     "react": "^17.0.0",
+    "react-async": "^10.0.1",
     "react-dom": "^17.0.0",
+    "react-router-dom": "^5.2.0",
+    "sweetalert2": "^10.15.5",
+    "sweetalert2-react-content": "^3.3.1",
     "tailwindcss": "^2.0.3"
   },
   "devDependencies": {
