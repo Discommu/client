@@ -11,7 +11,7 @@ class NavBar extends Component {
         super();
         this.state = {
             loginURL: '',
-            user: {},
+            user: null,
             popUp: false
         };
     }
@@ -49,7 +49,7 @@ class NavBar extends Component {
                 localStorage.user = JSON.stringify(r.data.me)
             }
         }
-        else if (localStorage.token && !localStorage.user)
+        else if (!localStorage.token && !localStorage.user)
             this.setState({ user: null })
 
         if (localStorage.loginURL)
@@ -84,14 +84,18 @@ class NavBar extends Component {
                     <div>
                         <div className = 'flex cursor-pointer items-center' onClick = {() => this.setState({ popUp: !this.state.popUp })}>
                             <img src = {this.state.user.avatarURL} className = 'rounded-full w-7 h-7 mr-2' />
-                            <h4 className = 'pr-2 select-none'>{this.state.user.username}#{this.state.user.discriminator}</h4>
+                            <h4 className = 'pr-2 select-none'>{this.state.user.username.length > 10 ? `${this.state.user.username.slice(0, 10)}...` : this.state.user.username}#{this.state.user.discriminator}</h4>
                             <FontAwesomeIcon icon = {faAngleDown} className = 'mr-5' />
                         </div>
                         {this.state.popUp ? (
                             <div className = 'origin-top-right absolute right-5 w-48 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5'>
                                 <div className = 'py-1' role = 'menu' aria-orientation = 'vertical' aria-labelledby = 'options-menu'>
                                     <Link to = {`/user/${this.state.user.id}`} className = 'block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900'>프로필</Link>
-                                    <button onClick = {() => delete localStorage.token} className = 'block w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900 focus:outline-none focus:bg-gray-100 focus:text-gray-900'>
+                                    <button onClick = {() => {
+                                        delete localStorage.token
+                                        delete localStorage.user
+                                        location.reload()
+                                    }} className = 'block w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900 focus:outline-none focus:bg-gray-100 focus:text-gray-900'>
                                         로그아웃
                                     </button>
                                 </div>
