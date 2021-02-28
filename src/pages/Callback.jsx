@@ -1,5 +1,4 @@
 import { Component } from 'react';
-import { useAsync } from 'react-async';
 
 import { req } from '../utils/request';
 import { errorAlert } from '../utils/alert';
@@ -33,7 +32,6 @@ class CallBack extends Component {
         }
         else {
             const errors = res.errors
-            console.log(errors)
             if (errors[0])
                 await errorAlert({
                     title: '로그인에 실패했습니다',

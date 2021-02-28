@@ -19,7 +19,6 @@ class NavBar extends Component {
     async componentDidMount() {
         try {
             this.setState({ user: JSON.parse(localStorage.user) })
-            console.log(JSON.parse(localStorage.user))
         }
         catch {
             delete localStorage.user
@@ -91,9 +90,9 @@ class NavBar extends Component {
                         </div>
 
                         <div className = 'hidden sm:flex'>
-                            <div className = 'flex cursor-pointer items-center' onClick = {() => this.setState({ popUp: !this.state.popUp })}>
+                            <div className = 'flex cursor-pointer items-center select-none' onClick = {() => this.setState({ popUp: !this.state.popUp })}>
                                 <img src = {this.state.user.avatarURL} className = 'rounded-full w-7 h-7 mr-2' />
-                                <h4 className = 'pr-2 select-none'>{this.state.user.username.length > 10 ? `${this.state.user.username.slice(0, 10)}...` : this.state.user.username}#{this.state.user.discriminator}</h4>
+                                <h4 className = 'pr-2'>{this.state.user.username.length > 10 ? `${this.state.user.username.slice(0, 10)}...` : this.state.user.username}#{this.state.user.discriminator}</h4>
                                 <FontAwesomeIcon icon = {faAngleDown} className = 'mr-5' />
                             </div>
 
@@ -121,7 +120,7 @@ class NavBar extends Component {
                 </div>
 
                 {this.state.popUp ? (
-                    <div className = 'w-full fixed mt-10 border-b sm:hidden'>
+                    <div className = 'bg-white w-full fixed mt-10 border-b sm:hidden'>
                         <Link to = 'commu'  className = 'flex cursor-pointer items-center px-4 py-1 w-full h-8 flex text-m text-gray-700 hover:bg-gray-100 hover:text-gray-900'>
                             <h4 className = 'pr-2 select-none'>게시판</h4>
                         </Link>
