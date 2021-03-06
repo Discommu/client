@@ -1,0 +1,14 @@
+{
+  "imports": {
+    "@fortawesome/free-brands-svg-icons": "./@fortawesome/free-brands-svg-icons.js",
+    "@fortawesome/free-solid-svg-icons": "./@fortawesome/free-solid-svg-icons.js",
+    "@fortawesome/react-fontawesome": "./@fortawesome/react-fontawesome.js",
+    "react": "./react.js",
+    "react-dom": "./react-dom.js",
+    "react-router-dom": "./react-router-dom.js",
+    "sweetalert2": "./sweetalert2.js",
+    "sweetalert2-react-content": "./sweetalert2-react-content.js",
+    "sweetalert2/dist/sweetalert2.all.min.js": "./sweetalert2/dist/sweetalert2.all.min.js",
+    "tailwindcss/dist/tailwind.css": "./tailwindcss/dist/tailwind.css"
+  }
+}
