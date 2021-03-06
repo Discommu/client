@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 
 import Main from './pages/Main';
-import CallBack from './pages/Callback'
+import CallBack from './pages/Callback';
+import About from './pages/About';
 
 import NavBar from './components/NavBar';
 import Footer from './components/Footer';
@@ -27,6 +28,7 @@ class App extends Component {
                 <NavBar />
                 <Switch>
                     <Route exact path = '/' component = {Main} />
+                    <Route path = '/about' component = {About} />
                     <Route path = '/callback' component = {CallBack} />
                 </Switch>
                 <Footer />

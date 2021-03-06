@@ -69,14 +69,14 @@ class NavBar extends Component {
     render() {
         return (
             <div>
-                <div className = 'border-b h-10 fixed top-0 left-0 w-full flex pl-4 items-center bg-white dark:bg-grey-900'>
+                <div className = 'border-b h-10 fixed top-0 left-0 w-full flex pl-4 items-center bg-white dark:bg-grey-900 z-50'>
                     <Link to = '/'>
                         <div className = 'flex-none text-lg select-none' style = {{fontFamily: 'Open Sans, sans-serif'}}>
                             DISCOMMU
                         </div>
                     </Link>
                     <div className = 'hidden flex-none sm:flex' style = {{fontFamily: 'Roboto, sans-serif'}}>
-                        <Link to = '/commu' className = 'pl-5 pr-5 hover:cursor-pointer select-none text-sm'>게시판</Link>
+                        <Link to = '/commu' className = 'pl-5 pr-5 hover:cursor-pointer select-none'>게시판</Link>
                         <Link to = '/categories' className = 'pr-5 hover:cursor-pointer select-none'>카테고리</Link>
                     </div>
 
