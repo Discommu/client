@@ -5,6 +5,7 @@ import Main from './pages/Main';
 import CallBack from './pages/Callback'
 
 import NavBar from './components/NavBar';
+import Footer from './components/Footer';
 
 class App extends Component {
     componentDidMount() {
@@ -28,6 +29,7 @@ class App extends Component {
                     <Route exact path = '/' component = {Main} />
                     <Route path = '/callback' component = {CallBack} />
                 </Switch>
+                <Footer />
             </BrowserRouter>
         )
     }

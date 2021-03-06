@@ -76,7 +76,7 @@ class NavBar extends Component {
                         </div>
                     </Link>
                     <div className = 'hidden flex-none sm:flex' style = {{fontFamily: 'Roboto, sans-serif'}}>
-                        <Link to = '/commu' className = 'pl-5 pr-5 hover:cursor-pointer select-none'>게시판</Link>
+                        <Link to = '/commu' className = 'pl-5 pr-5 hover:cursor-pointer select-none text-sm'>게시판</Link>
                         <Link to = '/categories' className = 'pr-5 hover:cursor-pointer select-none'>카테고리</Link>
                     </div>
 
