@@ -3,3 +3,21 @@
 @tailwind components;
 
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@800&family=Roboto&display=swap');
+
+html {
+    scrollbar-width: thin;
+    overflow-x: hidden;
+}
+
+::-webkit-scrollbar {
+    width: 6px;
+}
+
+::-webkit-scrollbar-track {
+    background: #2a2626;
+}
+
+::-webkit-scrollbar-thumb {
+    border-radius: 5px;
+    background: #858585;
+}
