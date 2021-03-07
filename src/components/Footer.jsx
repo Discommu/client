@@ -4,7 +4,8 @@ import { Link } from 'react-router-dom';
 import { url } from '../utils/request';
 
 const Footer = () => (
-      <footer className = 'bg-gray-900 text-gray-300 px-6 lg:px-8 py-12 mt-16 select-none'>
+      <div className = 'flex flex-col mt-16'>
+      <footer className = 'bg-gray-900 text-gray-300 px-6 lg:px-8 py-12 select-none mt-auto'>
             <div className = 'max-w-screen-xl mx-auto grid md:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-x-8'>
                   <div className = 'col-span-2'>
                         <h5 className = 'text-xl font-semibold text-white'>Discommu</h5>
@@ -55,6 +56,7 @@ const Footer = () => (
                   </div>
             </div>
       </footer>
+      </div>
 )
 
 export default Footer;

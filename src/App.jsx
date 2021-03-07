@@ -24,15 +24,19 @@ class App extends Component {
 
     render() {
         return (
-            <BrowserRouter>
-                <NavBar />
-                <Switch>
-                    <Route exact path = '/' component = {Main} />
-                    <Route path = '/about' component = {About} />
-                    <Route path = '/callback' component = {CallBack} />
-                </Switch>
-                <Footer />
-            </BrowserRouter>
+            <div className = 'flex flex-col h-screen'>
+                <BrowserRouter>
+                    <NavBar />
+                    <div className = 'mb-auto'>
+                        <Switch>
+                            <Route exact path = '/' component = {Main} />
+                            <Route path = '/about' component = {About} />
+                            <Route path = '/callback' component = {CallBack} />
+                        </Switch>
+                    </div>
+                    <Footer />
+                </BrowserRouter>
+            </div>
         )
     }
 };
