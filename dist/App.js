@@ -18,7 +18,11 @@ class App extends Component {
     }
   }
   render() {
-    return /* @__PURE__ */ React.createElement(BrowserRouter, null, /* @__PURE__ */ React.createElement(NavBar, null), /* @__PURE__ */ React.createElement(Switch, null, /* @__PURE__ */ React.createElement(Route, {
+    return /* @__PURE__ */ React.createElement("div", {
+      className: "flex flex-col h-screen"
+    }, /* @__PURE__ */ React.createElement(BrowserRouter, null, /* @__PURE__ */ React.createElement(NavBar, null), /* @__PURE__ */ React.createElement("div", {
+      className: "mb-auto"
+    }, /* @__PURE__ */ React.createElement(Switch, null, /* @__PURE__ */ React.createElement(Route, {
       exact: true,
       path: "/",
       component: Main
@@ -28,7 +32,7 @@ class App extends Component {
     }), /* @__PURE__ */ React.createElement(Route, {
       path: "/callback",
       component: CallBack
-    })), /* @__PURE__ */ React.createElement(Footer, null));
+    }))), /* @__PURE__ */ React.createElement(Footer, null)));
   }
 }
 ;

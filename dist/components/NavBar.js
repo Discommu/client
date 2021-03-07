@@ -68,10 +68,10 @@ class NavBar extends Component {
       style: {fontFamily: "Roboto, sans-serif"}
     }, /* @__PURE__ */ React.createElement(Link, {
       to: "/commu",
-      className: "pl-5 pr-5 hover:cursor-pointer select-none"
+      className: "pl-5 pr-5 hover:cursor-pointer select-none hover:text-gray-700"
     }, "\uAC8C\uC2DC\uD310"), /* @__PURE__ */ React.createElement(Link, {
       to: "/categories",
-      className: "pr-5 hover:cursor-pointer select-none"
+      className: "pr-5 hover:cursor-pointer select-none hover:text-gray-700"
     }, "\uCE74\uD14C\uACE0\uB9AC")), /* @__PURE__ */ React.createElement("div", {
       className: "flex-grow"
     }), this.state.user ? /* @__PURE__ */ React.createElement(React.Fragment, null, /* @__PURE__ */ React.createElement("div", {

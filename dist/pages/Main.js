@@ -13,7 +13,7 @@ const Main = () => /* @__PURE__ */ React.createElement("div", {
 }, "Discord\uC5D0\uC11C\uC758 \uAC8C\uC2DC\uD310!"), /* @__PURE__ */ React.createElement(Link, {
   to: "/commu"
 }, /* @__PURE__ */ React.createElement("button", {
-  className: "text-base border-white border-2 p-2 rounded-lg mt-2 text-white font-semibold hover:bg-white hover:text-green-500 sm:text-lg"
+  className: "text-base border-white border-2 p-2 rounded-lg mt-2 text-white font-semibold hover:bg-white hover:text-green-500"
 }, "\uAC8C\uC2DC\uD310"))), /* @__PURE__ */ React.createElement("div", {
   className: "select-none w-4/5 pt-12 mx-auto lg:grid lg:grid-cols-2 lg:gap-4"
 }, /* @__PURE__ */ React.createElement("a", {
@@ -26,12 +26,12 @@ const Main = () => /* @__PURE__ */ React.createElement("div", {
   className: "text-3xl",
   style: {color: "white"}
 }), /* @__PURE__ */ React.createElement("h2", {
-  className: "text-white font-bold ml-6 text-xl"
+  className: "text-white text-lg font-bold ml-6 sm:text-xl"
 }, "DISCOMMU BOT \uCD08\uB300\uD558\uAE30!"))), /* @__PURE__ */ React.createElement("a", {
   href: "https://discord.gg/R5UG5mR"
 }, /* @__PURE__ */ React.createElement("div", {
   className: "transition duration-200 ease-in-out w-full h-16 pl-6 rounded-xl shadow-2xl flex items-center transform hover:-translate-y-1.5"
 }, /* @__PURE__ */ React.createElement("h2", {
-  className: "font-bold ml-6 text-xl"
+  className: "text-lg font-bold ml-6 sm:text-xl"
 }, "Team Kat \uBCF4\uB7EC\uAC00\uAE30!")))));
 export default Main;
