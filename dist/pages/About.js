@@ -28,7 +28,7 @@ class About extends Component {
     }, /* @__PURE__ */ React.createElement("h2", {
       className: "text-3xl font-black pb-6"
     }, "\uAC1C\uBC1C\uC790"), /* @__PURE__ */ React.createElement("div", {
-      className: "grid grid-cols-4 gap-5 pt-4"
+      className: "grid gap-5 pt-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 "
     }, developers.map((m) => /* @__PURE__ */ React.createElement(DevloperProfile, {
       ...m
     }))))));
