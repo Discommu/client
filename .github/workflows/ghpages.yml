@@ -11,6 +11,7 @@ jobs:
       - run: yarn
       - run: yarn build
       - run: touch build/.nojekyll
+      - run: cp build/index.html build/404.html
       - name: Deploy
         uses: JamesIves/github-pages-deploy-action@4.1.0
         with:
