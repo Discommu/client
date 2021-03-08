@@ -4,6 +4,8 @@ import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import Main from './pages/Main';
 import CallBack from './pages/Callback';
 import About from './pages/About';
+import Categories from './pages/Categories';
+import NoIE from './pages/NoIE';
 
 import NavBar from './components/NavBar';
 import Footer from './components/Footer';
@@ -23,6 +25,10 @@ class App extends Component {
     }
 
     render() {
+        if (window.MSCompatibleInfo) {
+            return <NoIE />
+        }
+
         return (
             <div className = 'flex flex-col h-screen'>
                 <BrowserRouter>
@@ -32,6 +38,8 @@ class App extends Component {
                             <Route exact path = '/' component = {Main} />
                             <Route path = '/about' component = {About} />
                             <Route path = '/callback' component = {CallBack} />
+                            <Route path = '/categories' component = {Categories} />
+                            <Route path = '/noie' component = {NoIE} />
                         </Switch>
                     </div>
                     <Footer />

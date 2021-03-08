@@ -4,15 +4,6 @@ import DevloperProfile from '../components/DevloperProfile';
 import developers from '../data/developers';
 
 class About extends Component {
-    constructor () {
-        super();
-        this.state = {
-        };
-    }
-
-    async componentDidMount() {
-    }
-
     render() {
         return (
             <div className = 'mt-20'>
