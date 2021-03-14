@@ -1,13 +1,7 @@
 import React, {Component} from "../../_snowpack/pkg/react.js";
-import DevloperProfile from "../components/DevloperProfile.js";
+import DeveloperProfile from "../components/DeveloperProfile.js";
 import developers from "../data/developers.js";
 class About extends Component {
-  constructor() {
-    super();
-    this.state = {};
-  }
-  async componentDidMount() {
-  }
   render() {
     return /* @__PURE__ */ React.createElement("div", {
       className: "mt-20"
@@ -29,7 +23,7 @@ class About extends Component {
       className: "text-3xl font-black pb-6"
     }, "\uAC1C\uBC1C\uC790"), /* @__PURE__ */ React.createElement("div", {
       className: "grid gap-5 pt-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 "
-    }, developers.map((m) => /* @__PURE__ */ React.createElement(DevloperProfile, {
+    }, developers.map((m) => /* @__PURE__ */ React.createElement(DeveloperProfile, {
       ...m
     }))))));
   }

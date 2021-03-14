@@ -1,4 +1,4 @@
-export const url = 'http://localhost:3000/graphql';
+export const url = 'https://api.discommu.ga/graphql';
 export const req = async ({ query, variables = {}, headers = {} }) => {
     const res = await fetch(url, {
         method: 'post',

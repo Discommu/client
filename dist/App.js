@@ -3,6 +3,8 @@ import {BrowserRouter, Route, Switch} from "../_snowpack/pkg/react-router-dom.js
 import Main from "./pages/Main.js";
 import CallBack from "./pages/Callback.js";
 import About from "./pages/About.js";
+import Categories from "./pages/Categories.js";
+import NoIE from "./pages/NoIE.js";
 import NavBar from "./components/NavBar.js";
 import Footer from "./components/Footer.js";
 class App extends Component {
@@ -18,6 +20,9 @@ class App extends Component {
     }
   }
   render() {
+    if (!!document.documentMode) {
+      return /* @__PURE__ */ React.createElement(NoIE, null);
+    }
     return /* @__PURE__ */ React.createElement("div", {
       className: "flex flex-col h-screen"
     }, /* @__PURE__ */ React.createElement(BrowserRouter, null, /* @__PURE__ */ React.createElement(NavBar, null), /* @__PURE__ */ React.createElement("div", {
@@ -32,6 +37,12 @@ class App extends Component {
     }), /* @__PURE__ */ React.createElement(Route, {
       path: "/callback",
       component: CallBack
+    }), /* @__PURE__ */ React.createElement(Route, {
+      path: "/categories",
+      component: Categories
+    }), /* @__PURE__ */ React.createElement(Route, {
+      path: "/noie",
+      component: NoIE
     }))), /* @__PURE__ */ React.createElement(Footer, null)));
   }
 }
