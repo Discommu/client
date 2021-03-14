@@ -25,7 +25,7 @@ class App extends Component {
     }
 
     render() {
-        if (window.MSCompatibleInfo) {
+        if (!!document.documentMode) {
             return <NoIE />
         }
 

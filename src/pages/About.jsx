@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import DevloperProfile from '../components/DevloperProfile';
+import DeveloperProfile from '../components/DeveloperProfile';
 import developers from '../data/developers';
 
 class About extends Component {
@@ -17,7 +17,7 @@ class About extends Component {
                     <div className = 'divide-y-2 divide-black divide-opacity-25'>
                         <h2 className = 'text-3xl font-black pb-6'>개발자</h2>
                         <div className = 'grid gap-5 pt-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 '>
-                            {developers.map(m => (<DevloperProfile {...m} />))}
+                            {developers.map(m => (<DeveloperProfile {...m} />))}
                         </div>
                     </div>
                 </div>
