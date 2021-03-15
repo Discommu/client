@@ -16,5 +16,11 @@ export default [
         role: '도메인 후원',
         github: 'UniqueDevStorm',
         iconURL: 'https://avatars.githubusercontent.com/u/71119629'
+    },
+    {
+        name: '_Decave27',
+        role: '서버 후원',
+        github: 'decave27',
+        iconURL: 'https://avatars.githubusercontent.com/u/67851900'
     }
 ]
