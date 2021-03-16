@@ -155,7 +155,7 @@ class Categories extends Component {
                             !!(this.state.categories.length) ? (
                                 <div className = '-mx-4 sm:-mx-8 px-4 sm:px-8 py-4 overflow-x-auto'>
                                     <div className = 'inline-block min-w-full shadow rounded-lg overflow-hidden'>
-                                        <table className = 'min-w-full leading-normal'>
+                                        <table className = 'min-w-full leading-normal select-none'>
                                             <thead>
                                                 <tr>
                                                     <th className = 'px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider'>
@@ -206,7 +206,7 @@ class Categories extends Component {
                                             </tbody>
                                         </table>
                                         <div className = 'px-5 py-5 bg-white border-t flex flex-col xs:flex-row items-center xs:justify-between'>
-                                            <span className = 'text-xs cursor-default xs:text-sm text-gray-900'>
+                                            <span className = 'text-xs cursor-default select-none xs:text-sm text-gray-900'>
                                                 Showing {this.state.page * 10 + 1} to {this.state.page * 10 + this.state.categories[this.state.page].length} of {this.state.allcategories.length} Categories
                                             </span>
                                             <div className = 'inline-flex mt-2 xs:mt-0'>
