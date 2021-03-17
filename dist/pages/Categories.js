@@ -48,7 +48,7 @@ class Categories extends Component {
         });
       }
       this.setState({
-        allcategories: res2,
+        allcategorieslength: res2.length,
         categories: divide(res2, 10)
       });
     }
@@ -159,7 +159,7 @@ class Categories extends Component {
     }, /* @__PURE__ */ React.createElement("div", {
       className: "inline-block min-w-full shadow rounded-lg overflow-hidden"
     }, /* @__PURE__ */ React.createElement("table", {
-      className: "min-w-full leading-normal"
+      className: "min-w-full leading-normal select-none"
     }, /* @__PURE__ */ React.createElement("thead", null, /* @__PURE__ */ React.createElement("tr", null, /* @__PURE__ */ React.createElement("th", {
       className: "px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider"
     }, "\uC774\uB984"), /* @__PURE__ */ React.createElement("th", {
@@ -199,8 +199,8 @@ class Categories extends Component {
     }, "\uC785\uC7A5"))))))), /* @__PURE__ */ React.createElement("div", {
       className: "px-5 py-5 bg-white border-t flex flex-col xs:flex-row items-center xs:justify-between"
     }, /* @__PURE__ */ React.createElement("span", {
-      className: "text-xs cursor-default xs:text-sm text-gray-900"
-    }, "Showing ", this.state.page * 10 + 1, " to ", this.state.page * 10 + this.state.categories[this.state.page].length, " of ", this.state.allcategories.length, " Categories"), /* @__PURE__ */ React.createElement("div", {
+      className: "text-xs cursor-default select-none xs:text-sm text-gray-900"
+    }, "Showing ", this.state.page * 10 + 1, " to ", this.state.page * 10 + this.state.categories[this.state.page].length, " of ", this.state.allcategorieslength, " Categories"), /* @__PURE__ */ React.createElement("div", {
       className: "inline-flex mt-2 xs:mt-0"
     }, /* @__PURE__ */ React.createElement("button", {
       className: `text-sm bg-gray-300 ${!this.state.page ? "cursor-default" : "hover:bg-gray-400"} text-gray-800 font-semibold py-2 px-4 rounded-l border-r-2 border-gray-200`,

@@ -5,6 +5,7 @@ import CallBack from "./pages/Callback.js";
 import About from "./pages/About.js";
 import Categories from "./pages/Categories.js";
 import NoIE from "./pages/NoIE.js";
+import Category from "./pages/Category.js";
 import NavBar from "./components/NavBar.js";
 import Footer from "./components/Footer.js";
 class App extends Component {
@@ -43,6 +44,9 @@ class App extends Component {
     }), /* @__PURE__ */ React.createElement(Route, {
       path: "/noie",
       component: NoIE
+    }), /* @__PURE__ */ React.createElement(Route, {
+      path: "/category/:name",
+      component: Category
     }))), /* @__PURE__ */ React.createElement(Footer, null)));
   }
 }
