@@ -53,7 +53,7 @@ class Categories extends Component {
                 })
             }
             this.setState({
-                allcategories: res2, 
+                allcategorieslength: res2.length, 
                 categories: divide(res2, 10)
             })
         }
@@ -207,7 +207,7 @@ class Categories extends Component {
                                         </table>
                                         <div className = 'px-5 py-5 bg-white border-t flex flex-col xs:flex-row items-center xs:justify-between'>
                                             <span className = 'text-xs cursor-default select-none xs:text-sm text-gray-900'>
-                                                Showing {this.state.page * 10 + 1} to {this.state.page * 10 + this.state.categories[this.state.page].length} of {this.state.allcategories.length} Categories
+                                                Showing {this.state.page * 10 + 1} to {this.state.page * 10 + this.state.categories[this.state.page].length} of {this.state.allcategorieslength} Categories
                                             </span>
                                             <div className = 'inline-flex mt-2 xs:mt-0'>
                                                 <button className = {`text-sm bg-gray-300 ${!this.state.page ? 'cursor-default' : 'hover:bg-gray-400'} text-gray-800 font-semibold py-2 px-4 rounded-l border-r-2 border-gray-200`} onClick = {() => {
