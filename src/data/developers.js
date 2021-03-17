@@ -18,7 +18,7 @@ export default [
         iconURL: 'https://avatars.githubusercontent.com/u/71119629'
     },
     {
-        name: '_Decave27',
+        name: 'Decave',
         role: '서버 후원',
         github: 'decave27',
         iconURL: 'https://avatars.githubusercontent.com/u/67851900'

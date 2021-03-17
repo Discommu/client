@@ -18,7 +18,7 @@ const Main = () => (
 
         <div className = 'select-none w-4/5 pt-12 mx-auto lg:grid lg:grid-cols-2 lg:gap-4'>
             <a href = 'https://discord.com/api/oauth2/authorize?client_id=761495487215042570&permissions=0&scope=bot'>
-                <div className = 'transition duration-200 ease-in-out w-full h-16 pl-6 rounded-xl shadow-2xl flex items-center transform hover:-translate-y-1.5' style = {{backgroundColor: '#7289da'}}>
+                <div className = 'transition duration-200 ease-in-out w-full h-16 pl-6 rounded-xl flex items-center transform hover:-translate-y-1.5' style = {{backgroundColor: '#7289da'}}>
                     <FontAwesomeIcon icon = {faDiscord} className = 'text-3xl' style = {{color: 'white'}} />
                     <h2 className = 'text-white text-lg font-bold ml-6 sm:text-xl'>DISCOMMU BOT 초대하기!</h2>
                 </div>
