@@ -148,7 +148,7 @@ class Category extends Component {
                 {
                     !this.state.NotFound ? (
                         <div className = 'w-4/5 mx-auto'>
-                            <div className = 'select-none h-60 sm:h-40 px-12 pt-12 rounded-3xl shadow-2xl border-black border-2 border-opacity-5 transition duration-200 ease-in-out transform hover:-translate-y-1.5 sm:flex sm:flex-column'>
+                            <div className = 'select-none h-60 sm:h-40 px-12 pt-12 rounded-3xl shadow-xl border-black border-2 border-opacity-5 transition duration-200 ease-in-out transform hover:-translate-y-1.5 sm:flex sm:flex-column'>
                                 <div className = ''>
                                     <h1 className = 'banner_sitename text-3xl text-black font-semibold sm:text-3xl'>{this.state.name}</h1>
                                     <h3 className = 'text-base mt-0 text-black text-md font-semibold'>{this.state.description}</h3>
@@ -193,7 +193,8 @@ class Category extends Component {
                                                         {[
                                                             { value: 'newest', label: '최신 제작순' },
                                                             { value: 'alphabet', label: 'ㄱㄴㄷ 순'},
-                                                            { value: 'posts', label: '글 개수 순' }
+                                                            { value: 'hearts', label: '하트 개수 순' },
+                                                            { value: 'views', label: '조회수 순' }
                                                         ].map(i => <option value = {i.value}>{i.label}</option>)}
                                                     </select>
                                                     <div className = 'pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700'>
