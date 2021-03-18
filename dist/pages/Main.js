@@ -19,7 +19,7 @@ const Main = () => /* @__PURE__ */ React.createElement("div", {
 }, /* @__PURE__ */ React.createElement("a", {
   href: "https://discord.com/api/oauth2/authorize?client_id=761495487215042570&permissions=0&scope=bot"
 }, /* @__PURE__ */ React.createElement("div", {
-  className: "transition duration-200 ease-in-out w-full h-16 pl-6 rounded-xl shadow-2xl flex items-center transform hover:-translate-y-1.5",
+  className: "transition duration-200 ease-in-out w-full h-16 pl-6 rounded-xl flex items-center transform hover:-translate-y-1.5",
   style: {backgroundColor: "#7289da"}
 }, /* @__PURE__ */ React.createElement(FontAwesomeIcon, {
   icon: faDiscord,

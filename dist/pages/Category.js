@@ -9,6 +9,8 @@ class Category extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      selectedOption: "newest",
+      searchValue: "",
       name: props.match.params.name,
       author: null,
       authorID: null,
@@ -65,7 +67,6 @@ class Category extends Component {
         posts: divide(data.posts, 10),
         authorID: data.author.id
       });
-      console.log(this.state.allpostslength);
     }
   }
   categoryEdit = async () => {
@@ -129,13 +130,52 @@ class Category extends Component {
       }
     }
   };
+  handleSubmit = async (e) => {
+    e.preventDefault();
+    const tagRegex = /#(?<tag>\S+)/g;
+    let search = this.state.searchValue.replace(tagRegex, "").trim().replaceAll(/ +/g, " ");
+    const tags = [...search.matchAll(tagRegex)];
+    const tagText = tags.length ? `tags: [${tags}],` : "";
+    console.log(`searchType: "${this.state.selectedOption}", searchQuery: "${this.state.searchValue}", ${tagText} category: "${this.state.name}"`);
+    const res = await req({
+      query: `
+                query {
+                    posts(searchType: "${this.state.selectedOption}", searchQuery: "${this.state.searchValue}", ${tagText} category: "${this.state.name}") {
+                        _id
+                        author {
+                            username
+                            discriminator
+                            id
+                        }
+                        title
+                        tag
+                        hearts
+                        views
+                        comments {
+                            _id
+                        }
+                    }
+                }
+            `
+    });
+    if (res.errors) {
+      await errorAlert({
+        title: "\uAE00 \uAC80\uC0C9\uC744 \uC2E4\uD328\uD588\uC2B5\uB2C8\uB2E4"
+      });
+    } else {
+      this.setState({
+        allpostslength: res.data.posts.length,
+        posts: divide(res.data.posts, 10)
+      });
+    }
+  };
   render() {
     return /* @__PURE__ */ React.createElement("div", {
       className: "mt-16"
     }, !this.state.NotFound ? /* @__PURE__ */ React.createElement("div", {
       className: "w-4/5 mx-auto"
     }, /* @__PURE__ */ React.createElement("div", {
-      className: "select-none h-60 sm:h-40 px-12 pt-12 rounded-3xl shadow-2xl border-black border-2 border-opacity-5 transition duration-200 ease-in-out transform hover:-translate-y-1.5 sm:flex sm:flex-column"
+      className: "select-none h-60 sm:h-40 px-12 pt-12 rounded-3xl shadow-xl border-black border-2 border-opacity-5 transition duration-200 ease-in-out transform hover:-translate-y-1.5 sm:flex sm:flex-column"
     }, /* @__PURE__ */ React.createElement("div", {
       className: ""
     }, /* @__PURE__ */ React.createElement("h1", {
@@ -168,7 +208,7 @@ class Category extends Component {
       icon: faEdit,
       className: "cursor-pointer",
       onClick: this.categoryEdit
-    })) : null)), !!this.state.posts.length ? /* @__PURE__ */ React.createElement("div", {
+    })) : null)), /* @__PURE__ */ React.createElement("div", {
       className: "py-8"
     }, /* @__PURE__ */ React.createElement("div", {
       className: "text-left sm:flex"
@@ -190,12 +230,13 @@ class Category extends Component {
     }, /* @__PURE__ */ React.createElement("select", {
       className: "appearance-none h-full rounded-r rounded-l sm:rounded-r-none border block w-full bg-white border-gray-400 text-gray-700 py-2 px-4 pr-8 leading-tight focus:outline-none focus:bg-white focus:border-gray-500",
       onChange: (e) => {
-        this.setState({searchOption: e.target.value});
+        this.setState({selectedOption: e.target.value});
       }
     }, [
       {value: "newest", label: "\uCD5C\uC2E0 \uC81C\uC791\uC21C"},
       {value: "alphabet", label: "\u3131\u3134\u3137 \uC21C"},
-      {value: "posts", label: "\uAE00 \uAC1C\uC218 \uC21C"}
+      {value: "hearts", label: "\uD558\uD2B8 \uAC1C\uC218 \uC21C"},
+      {value: "views", label: "\uC870\uD68C\uC218 \uC21C"}
     ].map((i) => /* @__PURE__ */ React.createElement("option", {
       value: i.value
     }, i.label))), /* @__PURE__ */ React.createElement("div", {
@@ -295,9 +336,7 @@ class Category extends Component {
           return {page: s.page + 1};
         });
       }
-    }, "Next"))))) : /* @__PURE__ */ React.createElement("h1", null, "\uAC80\uC0C9\uACB0\uACFC\uAC00 \uC5C6\uC2B5\uB2C8\uB2E4") : /* @__PURE__ */ React.createElement("h1", null, "\uACB0\uACFC \uC218\uC9D1\uC911...")) : /* @__PURE__ */ React.createElement("h1", {
-      className: "font-black text-3xl text-center m-16"
-    }, "\uAE00\uC774 \uC5C6\uC2B5\uB2C8\uB2E4")) : /* @__PURE__ */ React.createElement("h1", {
+    }, "Next"))))) : /* @__PURE__ */ React.createElement("h1", null, "\uAC80\uC0C9\uACB0\uACFC\uAC00 \uC5C6\uC2B5\uB2C8\uB2E4") : /* @__PURE__ */ React.createElement("h1", null, "\uACB0\uACFC \uC218\uC9D1\uC911..."))) : /* @__PURE__ */ React.createElement("h1", {
       className: "font-black text-3xl text-center"
     }, "\uCE74\uD14C\uACE0\uB9AC\uAC00 \uC5C6\uC2B5\uB2C8\uB2E4"));
   }
