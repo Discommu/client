@@ -9,10 +9,10 @@ class Categories extends Component {
     constructor () {
         super();
         this.state = {
-            selectedOption: null,
-            searchValue: null,
+            selectedOption: 'newest',
+            searchValue: '',
             categories: null,
-            allcategories: null,
+            allcategorieslength: null,
             page: 0
         };
     }
@@ -97,7 +97,7 @@ class Categories extends Component {
                 })
             }
             this.setState({
-                allcategories: res2, 
+                allcategorieslength: res2.length, 
                 categories: divide(res2, 10)
             })
         }
