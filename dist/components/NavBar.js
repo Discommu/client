@@ -44,7 +44,7 @@ class NavBar extends Component {
     if (localStorage.loginURL)
       this.setState({loginURL: localStorage.loginURL});
     else {
-      const r = await query({
+      const r = await req({
         query: `
                     query {
                         loginURL
