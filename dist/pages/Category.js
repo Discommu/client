@@ -198,7 +198,7 @@ class Category extends Component {
     }, /* @__PURE__ */ React.createElement(FontAwesomeIcon, {
       icon: faFileAlt,
       className: "mr-2"
-    }), this.state.posts.length, "\uAC1C"), localStorage.user && this.state.authorID === JSON.parse(localStorage.user).id ? /* @__PURE__ */ React.createElement("div", {
+    }), this.state.allpostslength, "\uAC1C"), localStorage.user && this.state.authorID === JSON.parse(localStorage.user).id ? /* @__PURE__ */ React.createElement("div", {
       className: ""
     }, /* @__PURE__ */ React.createElement(FontAwesomeIcon, {
       icon: faTrash,
