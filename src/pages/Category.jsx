@@ -208,7 +208,7 @@ class Category extends Component {
                                     </Link>
                                     <div className = ''>
                                         <FontAwesomeIcon icon = {faFileAlt} className = 'mr-2' />
-                                        {this.state.posts.length}개
+                                        {this.state.allpostslength}개
                                     </div>
                                     {localStorage.user && (this.state.authorID === JSON.parse(localStorage.user).id) ? (
                                         <div className = ''>
