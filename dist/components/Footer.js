@@ -40,12 +40,15 @@ const Footer = () => /* @__PURE__ */ React.createElement("div", {
 }, /* @__PURE__ */ React.createElement("ul", {
   className: "space-y-2"
 }, /* @__PURE__ */ React.createElement("li", null, /* @__PURE__ */ React.createElement("a", {
+  target: "_blank",
   href: url,
   className: "font-normal text-base hover:text-gray-100"
 }, "API")), /* @__PURE__ */ React.createElement("li", null, /* @__PURE__ */ React.createElement("a", {
+  target: "_blank",
   href: "https://teamkat.tk",
   className: "font-normal text-base hover:text-gray-100"
 }, "Team Kat")), /* @__PURE__ */ React.createElement("li", null, /* @__PURE__ */ React.createElement("a", {
+  target: "_blank",
   href: "https://discord.com/api/oauth2/authorize?client_id=761495487215042570&permissions=0&scope=bot",
   className: "font-normal text-base hover:text-gray-100"
 }, "Bot")))))), /* @__PURE__ */ React.createElement("div", {

@@ -114,7 +114,7 @@ class NavBar extends Component {
       href: this.state.loginURL,
       className: "select-none pr-5"
     }, "\uB85C\uADF8\uC778")), this.state.popUp ? /* @__PURE__ */ React.createElement("div", {
-      className: "bg-white w-full fixed mt-10 border-b sm:hidden"
+      className: "bg-white w-full fixed mt-10 border-b z-50 sm:hidden"
     }, /* @__PURE__ */ React.createElement(Link, {
       to: "commu",
       className: "flex cursor-pointer items-center px-4 py-1 w-full h-8 flex text-m text-gray-700 hover:bg-gray-100 hover:text-gray-900"

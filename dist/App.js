@@ -4,6 +4,7 @@ import Main from "./pages/Main.js";
 import CallBack from "./pages/Callback.js";
 import About from "./pages/About.js";
 import Categories from "./pages/Categories.js";
+import Posts from "./pages/Posts.js";
 import NoIE from "./pages/NoIE.js";
 import Category from "./pages/Category.js";
 import NavBar from "./components/NavBar.js";
@@ -41,6 +42,9 @@ class App extends Component {
     }), /* @__PURE__ */ React.createElement(Route, {
       path: "/categories",
       component: Categories
+    }), /* @__PURE__ */ React.createElement(Route, {
+      path: "/commu",
+      component: Posts
     }), /* @__PURE__ */ React.createElement(Route, {
       path: "/noie",
       component: NoIE

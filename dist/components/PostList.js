@@ -1,98 +1,69 @@
 import React, {Component} from "../../_snowpack/pkg/react.js";
 import {Link} from "../../_snowpack/pkg/react-router-dom.js";
-import divide from "../utils/divide.js";
-import {getCategories} from "../utils/getAPI.js";
+import {getPosts} from "../utils/getAPI.js";
 import {errorAlert} from "../utils/alert.js";
-class Categories extends Component {
-  constructor() {
-    super();
+import divide from "../utils/divide.js";
+class PostList extends Component {
+  constructor(props) {
+    super(props);
     this.state = {
       selectedOption: "newest",
       searchValue: "",
-      categories: null,
-      allcategorieslength: null,
-      page: 0
+      posts: [],
+      page: 0,
+      allpostslength: 0,
+      notFound: false
     };
   }
   async componentDidMount() {
-    const res = await getCategories();
+    const res = await getPosts(this.props ? {...this.props} : void 0);
     if (res.errors) {
       await errorAlert({
-        title: "\uCE74\uD14C\uACE0\uB9AC \uBD88\uB7EC\uC624\uAE30\uB97C \uC2E4\uD328\uD588\uC2B5\uB2C8\uB2E4"
+        title: "\uAE00 \uBD88\uB7EC\uC624\uAE30\uB97C \uC2E4\uD328\uD588\uC2B5\uB2C8\uB2E4"
       });
+      history.back();
+    } else if (!res.data.posts) {
+      this.setState({notFound: true});
     } else {
-      let res2 = [];
-      for (let i = 0; i < res.data.categories.length; i++) {
-        const j = res.data.categories[i];
-        res2.push({
-          name: j.name,
-          description: j.description,
-          author: `${j.author.username}#${j.author.discriminator}`,
-          posts: j.posts.length
-        });
-      }
+      const data = res.data.posts;
       this.setState({
-        allcategorieslength: res2.length,
-        categories: divide(res2, 10)
+        allpostslength: data.length,
+        posts: divide(data, 10)
       });
     }
   }
   handleSubmit = async (e) => {
     e.preventDefault();
-    const res = await req({
-      query: `
-                query {
-                    categories(searchType: "${this.state.selectedOption}", searchQuery: "${this.state.searchValue}") {
-                        name
-                        description
-                        author {
-                            username
-                            discriminator
-                        }
-                        posts {
-                            title
-                        }
-                    }
-                }
-            `
+    const tagRegex = /#(?<tag>\S+)/g;
+    let search = this.state.searchValue.replace(tagRegex, "").trim().replaceAll(/ +/g, " ");
+    const res = await getPosts({
+      searchValue: this.state.searchValue,
+      selectedOption: this.state.selectedOption,
+      category: this.state.name,
+      tags: [...search.matchAll(this.state.searchValue.replace(tagRegex, "").trim().replaceAll(/ +/g, " "))]
     });
     if (res.errors) {
-      console.log(res.errors);
       await errorAlert({
-        title: "\uCE74\uD14C\uACE0\uB9AC \uAC80\uC0C9\uC744 \uC2E4\uD328\uD588\uC2B5\uB2C8\uB2E4"
+        title: "\uAE00 \uAC80\uC0C9\uC744 \uC2E4\uD328\uD588\uC2B5\uB2C8\uB2E4"
       });
     } else {
-      let res2 = [];
-      for (let i = 0; i < res.data.categories.length; i++) {
-        const j = res.data.categories[i];
-        res2.push({
-          name: j.name,
-          description: j.description,
-          author: `${j.author.username}#${j.author.discriminator}`,
-          posts: j.posts.length
-        });
-      }
       this.setState({
-        allcategorieslength: res2.length,
-        categories: divide(res2, 10)
+        allpostslength: res.data.posts.length,
+        posts: divide(res.data.posts, 10)
       });
     }
   };
   render() {
     return /* @__PURE__ */ React.createElement("div", {
-      className: "antialiased font-sans mt-10"
-    }, /* @__PURE__ */ React.createElement("div", {
-      className: "container mx-auto px-4 sm:px-8"
-    }, /* @__PURE__ */ React.createElement("div", {
-      className: "py-8"
+      className: ""
     }, /* @__PURE__ */ React.createElement("div", {
       className: "text-left sm:flex"
     }, /* @__PURE__ */ React.createElement("h2", {
       className: "text-2xl font-semibold text-gray-900 select-none"
-    }, "\uCE74\uD14C\uACE0\uB9AC \uBAA9\uB85D"), /* @__PURE__ */ React.createElement("div", {
+    }, "\uAE00 \uBAA9\uB85D"), /* @__PURE__ */ React.createElement("div", {
       className: "sm:flex-grow"
     }), /* @__PURE__ */ React.createElement(Link, {
-      to: "/newcategory",
+      to: "/newpost",
       className: "mr-2"
     }, /* @__PURE__ */ React.createElement("button", {
       className: "text-sm bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded border-r-2 mb-1 mt-2   sm:mb-0 sm:mt-0"
@@ -105,12 +76,13 @@ class Categories extends Component {
     }, /* @__PURE__ */ React.createElement("select", {
       className: "appearance-none h-full rounded-r rounded-l sm:rounded-r-none border block w-full bg-white border-gray-400 text-gray-700 py-2 px-4 pr-8 leading-tight focus:outline-none focus:bg-white focus:border-gray-500",
       onChange: (e) => {
-        this.setState({searchOption: e.target.value});
+        this.setState({selectedOption: e.target.value});
       }
     }, [
       {value: "newest", label: "\uCD5C\uC2E0 \uC81C\uC791\uC21C"},
       {value: "alphabet", label: "\u3131\u3134\u3137 \uC21C"},
-      {value: "posts", label: "\uAE00 \uAC1C\uC218 \uC21C"}
+      {value: "hearts", label: "\uD558\uD2B8 \uAC1C\uC218 \uC21C"},
+      {value: "views", label: "\uC870\uD68C\uC218 \uC21C"}
     ].map((i) => /* @__PURE__ */ React.createElement("option", {
       value: i.value
     }, i.label))), /* @__PURE__ */ React.createElement("div", {
@@ -138,7 +110,7 @@ class Categories extends Component {
       onChange: (e) => {
         this.setState({searchValue: e.target.value});
       }
-    }))))), !(this.state.categories === null) ? !!this.state.categories.length ? /* @__PURE__ */ React.createElement("div", {
+    }))))), !(this.state.posts === null) ? !!this.state.posts.length ? /* @__PURE__ */ React.createElement("div", {
       className: "-mx-4 sm:-mx-8 px-4 sm:px-8 py-4 overflow-x-auto"
     }, /* @__PURE__ */ React.createElement("div", {
       className: "inline-block min-w-full shadow rounded-lg overflow-hidden"
@@ -146,15 +118,17 @@ class Categories extends Component {
       className: "min-w-full leading-normal select-none"
     }, /* @__PURE__ */ React.createElement("thead", null, /* @__PURE__ */ React.createElement("tr", null, /* @__PURE__ */ React.createElement("th", {
       className: "px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider"
-    }, "\uC774\uB984"), /* @__PURE__ */ React.createElement("th", {
-      className: "px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider hidden sm:table-cell"
-    }, "\uAE00 \uC218"), /* @__PURE__ */ React.createElement("th", {
-      className: "px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider hidden sm:table-cell"
-    }, "\uC81C\uC791\uC790"), /* @__PURE__ */ React.createElement("th", {
+    }, "\uC81C\uBAA9"), /* @__PURE__ */ React.createElement("th", {
+      className: "px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider hidden md:table-cell"
+    }, "\uAE00\uC4F4\uC774"), /* @__PURE__ */ React.createElement("th", {
       className: "px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider"
-    }, "\uC124\uBA85"), /* @__PURE__ */ React.createElement("th", {
+    }, "\uC870\uD68C\uC218"), /* @__PURE__ */ React.createElement("th", {
+      className: "px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider hidden sm:table-cell"
+    }, "\uD558\uD2B8"), /* @__PURE__ */ React.createElement("th", {
+      className: "px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider hidden sm:table-cell"
+    }, "\uB313\uAE00"), /* @__PURE__ */ React.createElement("th", {
       className: "px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider"
-    }, "\uC785\uC7A5"))), /* @__PURE__ */ React.createElement("tbody", null, this.state.categories[this.state.page].map((category) => /* @__PURE__ */ React.createElement("tr", null, /* @__PURE__ */ React.createElement("td", {
+    }, "\uC785\uC7A5"))), /* @__PURE__ */ React.createElement("tbody", null, this.state.posts[this.state.page].map((post) => /* @__PURE__ */ React.createElement("tr", null, /* @__PURE__ */ React.createElement("td", {
       className: "px-5 py-5 border-b border-gray-200 bg-white text-sm"
     }, /* @__PURE__ */ React.createElement("div", {
       className: "flex items-center"
@@ -162,29 +136,33 @@ class Categories extends Component {
       className: "ml-3"
     }, /* @__PURE__ */ React.createElement("p", {
       className: "text-gray-900"
-    }, category.name)))), /* @__PURE__ */ React.createElement("td", {
-      className: "px-5 py-5 border-b border-gray-200 bg-white text-sm hidden sm:table-cell"
+    }, post.title)))), /* @__PURE__ */ React.createElement("td", {
+      className: "px-5 py-5 border-b border-gray-200 bg-white text-sm hidden md:table-cell"
     }, /* @__PURE__ */ React.createElement("p", {
       className: "text-gray-900"
-    }, category.posts)), /* @__PURE__ */ React.createElement("td", {
-      className: "px-5 py-5 border-b border-gray-200 bg-white text-sm hidden sm:table-cell"
-    }, /* @__PURE__ */ React.createElement("p", {
-      className: "text-gray-900"
-    }, category.author)), /* @__PURE__ */ React.createElement("td", {
+    }, `${post.author.username}#${post.author.discriminator}`)), /* @__PURE__ */ React.createElement("td", {
       className: "px-5 py-5 border-b border-gray-200 bg-white text-sm"
     }, /* @__PURE__ */ React.createElement("p", {
       className: "text-gray-900"
-    }, category.description)), /* @__PURE__ */ React.createElement("td", {
+    }, post.views)), /* @__PURE__ */ React.createElement("td", {
+      className: "px-5 py-5 border-b border-gray-200 bg-white text-sm hidden sm:table-cell"
+    }, /* @__PURE__ */ React.createElement("p", {
+      className: "text-gray-900"
+    }, post.hearts.length)), /* @__PURE__ */ React.createElement("td", {
+      className: "px-5 py-5 border-b border-gray-200 bg-white text-sm hidden sm:table-cell"
+    }, /* @__PURE__ */ React.createElement("p", {
+      className: "text-gray-900"
+    }, post.comments.length)), /* @__PURE__ */ React.createElement("td", {
       className: "px-5 py-5 border-b border-gray-200 bg-white text-sm"
     }, /* @__PURE__ */ React.createElement(Link, {
-      to: `category/${category.name}`
+      to: `post/${post._id}`
     }, /* @__PURE__ */ React.createElement("button", {
       className: "text-sm bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded border-r-2"
     }, "\uC785\uC7A5"))))))), /* @__PURE__ */ React.createElement("div", {
       className: "px-5 py-5 bg-white border-t flex flex-col xs:flex-row items-center xs:justify-between"
     }, /* @__PURE__ */ React.createElement("span", {
       className: "text-xs cursor-default select-none xs:text-sm text-gray-900"
-    }, "Showing ", this.state.page * 10 + 1, " to ", this.state.page * 10 + this.state.categories[this.state.page].length, " of ", this.state.allcategorieslength, " Categories"), /* @__PURE__ */ React.createElement("div", {
+    }, "Showing ", this.state.page * 10 + 1, " to ", this.state.page * 10 + this.state.posts[this.state.page].length, " of ", this.state.allpostslength, " Posts"), /* @__PURE__ */ React.createElement("div", {
       className: "inline-flex mt-2 xs:mt-0"
     }, /* @__PURE__ */ React.createElement("button", {
       className: `text-sm bg-gray-300 ${!this.state.page ? "cursor-default" : "hover:bg-gray-400"} text-gray-800 font-semibold py-2 px-4 rounded-l border-r-2 border-gray-200`,
@@ -196,15 +174,15 @@ class Categories extends Component {
         });
       }
     }, "Prev"), /* @__PURE__ */ React.createElement("button", {
-      className: `text-sm bg-gray-300 ${this.state.page === this.state.categories.length - 1 ? "cursor-default" : "hover:bg-gray-400"} text-gray-800 font-semibold py-2 px-4 rounded-r border-l-2 border-gray-200`,
+      className: `text-sm bg-gray-300 ${this.state.page === this.state.posts.length - 1 ? "cursor-default" : "hover:bg-gray-400"} text-gray-800 font-semibold py-2 px-4 rounded-r border-l-2 border-gray-200`,
       onClick: () => {
-        if (this.state.page === this.state.categories.length - 1)
+        if (this.state.page === this.state.posts.length - 1)
           return;
         this.setState((s) => {
           return {page: s.page + 1};
         });
       }
-    }, "Next"))))) : /* @__PURE__ */ React.createElement("h1", null, "\uAC80\uC0C9\uACB0\uACFC\uAC00 \uC5C6\uC2B5\uB2C8\uB2E4") : /* @__PURE__ */ React.createElement("h1", null, "\uACB0\uACFC \uC218\uC9D1\uC911..."))));
+    }, "Next"))))) : /* @__PURE__ */ React.createElement("h1", null, "\uAC80\uC0C9\uACB0\uACFC\uAC00 \uC5C6\uC2B5\uB2C8\uB2E4") : /* @__PURE__ */ React.createElement("h1", null, "\uAC80\uC0C9\uC911..."));
   }
 }
-export default Categories;
+export default PostList;
