@@ -38,13 +38,13 @@ const Footer = () => (
                         <nav className = 'mt-4'>
                               <ul className = 'space-y-2'>
                                     <li>
-                                          <a href = {url} className = 'font-normal text-base hover:text-gray-100'>API</a>
+                                          <a target = '_blank' href = {url} className = 'font-normal text-base hover:text-gray-100'>API</a>
                                     </li>
                                     <li>
-                                          <a href = 'https://teamkat.tk' className = 'font-normal text-base hover:text-gray-100'>Team Kat</a>
+                                          <a target = '_blank' href = 'https://teamkat.tk' className = 'font-normal text-base hover:text-gray-100'>Team Kat</a>
                                     </li>
                                     <li>
-                                          <a href = 'https://discord.com/api/oauth2/authorize?client_id=761495487215042570&permissions=0&scope=bot' className = 'font-normal text-base hover:text-gray-100'>Bot</a>
+                                          <a target = '_blank' href = 'https://discord.com/api/oauth2/authorize?client_id=761495487215042570&permissions=0&scope=bot' className = 'font-normal text-base hover:text-gray-100'>Bot</a>
                                     </li>
                               </ul>
                         </nav>
