@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 
 import { req } from '../utils/request';
+import { getPosts } from '../utils/getAPI';
 import { errorAlert, inputAlert, successAlert, confirmAlert } from '../utils/alert';
 import divide from '../utils/divide';
 
@@ -149,29 +150,17 @@ class Category extends Component {
 
         let search = this.state.searchValue.replace(tagRegex, '').trim().replaceAll(/ +/g, ' ')
         const tags = [ ...search.matchAll(tagRegex) ]
-        const tagText = tags.length ?  `tags: [${tags}],` : ""
-        console.log(`searchType: "${this.state.selectedOption}", searchQuery: "${this.state.searchValue}", ${tagText} category: "${this.state.name}"`)
 
-        const res = await req({
-            query: `
-                query {
-                    posts(searchType: "${this.state.selectedOption}", searchQuery: "${this.state.searchValue}", ${tagText} category: "${this.state.name}") {
-                        _id
-                        author {
-                            username
-                            discriminator
-                            id
-                        }
-                        title
-                        tag
-                        hearts
-                        views
-                        comments {
-                            _id
-                        }
-                    }
-                }
-            `
+        const res = await getPosts({
+            searchValue: this.state.searchValue,
+            selectedOption: this.state.selectedOption,
+            category: this.state.name,
+            tags: [ ...search.matchAll(
+                this.state.searchValue
+                    .replace(tagRegex, '')
+                    .trim()
+                    .replaceAll(/ +/g, ' ')
+            ) ]
         })
         if (res.errors) {
             await errorAlert({
