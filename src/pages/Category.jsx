@@ -15,16 +15,11 @@ class Category extends Component {
     constructor (props) {
         super(props);
         this.state = {
-            selectedOption: 'newest',
-            searchValue: '',
             name: props.match.params.name,
             author: null,
             authorID: null,
             description: null,
-            posts: [],
             NotFound: false,
-            page: 0,
-            allpostslength: 0
         };
     }
 
