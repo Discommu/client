@@ -2,15 +2,15 @@ import { req } from "./request"
 
 export const getPosts = async (params) => {
     const { searchValue, selectedOption, category, tags } = params || {}
-    const tagText = `${tags}`
+    const tagText = tags ? `tags: [${`${tags}`
         .split(',')
         .map(x => `"${x}"`)
-        .join(",")
+        .join(",")}]` : ""
 
     const res = await req({
         query: `
             query {
-                posts${params ? `(${selectedOption ? `searchType: "${selectedOption}",` : ""} ${searchValue ? `searchQuery: "${searchValue}",` : ""} ${tags.length ?  `tags: [${tagText}],` : ""} ${category ? `category: "${category}"` : ""})` : ""} {
+                posts${params ? `(${selectedOption ? `searchType: "${selectedOption}",` : ""} ${searchValue ? `searchQuery: "${searchValue}",` : ""} ${tagText} ${category ? `category: "${category}"` : ""})` : ""} {
                     _id
                     author {
                         username
