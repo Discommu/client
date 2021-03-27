@@ -1,6 +1,7 @@
 import { req } from "./request"
 
-export const getPosts = async ({ searchValue, selectedOption, category, tags }) => {
+export const getPosts = async (params) => {
+    const { searchValue, selectedOption, category, tags } = params || {}
     const tagText = `${tags}`
         .split(',')
         .map(x => `"${x}"`)
@@ -9,7 +10,7 @@ export const getPosts = async ({ searchValue, selectedOption, category, tags }) 
     const res = await req({
         query: `
             query {
-                posts(searchType: "${selectedOption}", searchQuery: "${searchValue}", ${tags.length ?  `tags: [${tagText}],` : ""} category: "${category}") {
+                posts${params ? `(${selectedOption ? `searchType: "${selectedOption}",` : ""} ${searchValue ? `searchQuery: "${searchValue}",` : ""} ${tags.length ?  `tags: [${tagText}],` : ""} ${category ? `category: "${category}"` : ""})` : ""} {
                     _id
                     author {
                         username
@@ -21,6 +22,29 @@ export const getPosts = async ({ searchValue, selectedOption, category, tags }) 
                     hearts
                     views
                     comments {
+                        _id
+                    }
+                }
+            }
+        `
+    })
+    return res;
+}
+
+export const getCategories = async params => {
+    const { searchValue, selectedOption } = params || {}
+
+    const res = await req({
+        query: `
+            query {
+                categories${params ? `(${selectedOption ? `searchType: "${selectedOption}",` : ""} ${searchValue ? `searchQuery: "${searchValue}"` : ""})` : ""} {
+                    name
+                    description
+                    author {
+                        username
+                        discriminator
+                    }
+                    posts {
                         _id
                     }
                 }

@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 
 import divide from '../utils/divide';
-import { req } from '../utils/request';
+import { getCategories } from '../utils/getAPI';
 import { errorAlert } from '../utils/alert';
 
 class Categories extends Component {
@@ -18,23 +18,7 @@ class Categories extends Component {
     }
 
     async componentDidMount() {
-        const res = await req({
-            query: `
-                query {
-                    categories {
-                        name
-                        description
-                        author {
-                            username
-                            discriminator
-                        }
-                        posts {
-                            title
-                        }
-                    }
-                }
-            `
-        })
+        const res = await getCategories()
         if (res.errors) {
             await errorAlert({
                 title: '카테고리 불러오기를 실패했습니다'
