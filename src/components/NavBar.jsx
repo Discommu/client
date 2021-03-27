@@ -120,7 +120,7 @@ class NavBar extends Component {
                 </div>
 
                 {this.state.popUp ? (
-                    <div className = 'bg-white w-full fixed mt-10 border-b sm:hidden'>
+                    <div className = 'bg-white w-full fixed mt-10 border-b z-50 sm:hidden'>
                         <Link to = 'commu'  className = 'flex cursor-pointer items-center px-4 py-1 w-full h-8 flex text-m text-gray-700 hover:bg-gray-100 hover:text-gray-900'>
                             <h4 className = 'pr-2 select-none'>게시판</h4>
                         </Link>
