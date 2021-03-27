@@ -2,9 +2,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 
 import { req } from '../utils/request';
-import { getPosts } from '../utils/getAPI';
 import { errorAlert, inputAlert, successAlert, confirmAlert } from '../utils/alert';
-import divide from '../utils/divide';
 
 import PostList from '../components/PostList';
 
@@ -20,6 +18,7 @@ class Category extends Component {
             authorID: null,
             description: null,
             NotFound: false,
+            postlength: 0
         };
     }
 
@@ -36,18 +35,6 @@ class Category extends Component {
                         }
                         posts {
                             _id
-                            author {
-                                username
-                                discriminator
-                                id
-                            }
-                            title
-                            tag
-                            hearts
-                            views
-                            comments {
-                                _id
-                            }
                         }
                     }
                 }
@@ -67,9 +54,8 @@ class Category extends Component {
             this.setState({
                 description: data.description,
                 author: `${data.author.username}#${data.author.discriminator}`,
-                allpostslength: data.posts.length,
-                posts: divide(data.posts, 10),
-                authorID: data.author.id
+                authorID: data.author.id,
+                postlength: data.posts.length
             })
         }
     }
@@ -141,38 +127,6 @@ class Category extends Component {
         }
     }
 
-    handleSubmit = async e => {
-        e.preventDefault()
-        const tagRegex = /#(?<tag>\S+)/g
-
-        let search = this.state.searchValue.replace(tagRegex, '').trim().replaceAll(/ +/g, ' ')
-        const tags = [ ...search.matchAll(tagRegex) ]
-
-        const res = await getPosts({
-            searchValue: this.state.searchValue,
-            selectedOption: this.state.selectedOption,
-            category: this.state.name,
-            tags: [ ...search.matchAll(
-                this.state.searchValue
-                    .replace(tagRegex, '')
-                    .trim()
-                    .replaceAll(/ +/g, ' ')
-            ) ]
-        })
-        if (res.errors) {
-            await errorAlert({
-                title: '글 검색을 실패했습니다'
-            })
-        }
-
-        else {
-            this.setState({
-                allpostslength: res.data.posts.length, 
-                posts: divide(res.data.posts, 10)
-            })
-        }
-    }
-
     render() {
         return (
             <div className = 'mt-16'>
@@ -194,7 +148,7 @@ class Category extends Component {
                                     </Link>
                                     <div className = ''>
                                         <FontAwesomeIcon icon = {faFileAlt} className = 'mr-2' />
-                                        {this.state.posts.length}개
+                                        {this.state.postlength}개
                                     </div>
                                     {localStorage.user && (this.state.authorID === JSON.parse(localStorage.user).id) ? (
                                         <div className = ''>

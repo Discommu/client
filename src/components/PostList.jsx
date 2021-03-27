@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 
 import { getPosts } from '../utils/getAPI';
+import { errorAlert } from '../utils/alert';
 import divide from '../utils/divide';
 
 class PostList extends Component {
@@ -20,7 +21,7 @@ class PostList extends Component {
     }
 
     async componentDidMount() {
-        const res = await getPosts({ category: this.props.category })
+        const res = await getPosts(this.props ? { ...this.props } : undefined)
 
         if (res.errors) {
             await errorAlert({
@@ -36,6 +37,37 @@ class PostList extends Component {
             this.setState({
                 allpostslength: data.length,
                 posts: divide(data, 10)
+            })
+        }
+    }
+
+    handleSubmit = async e => {
+        e.preventDefault()
+        const tagRegex = /#(?<tag>\S+)/g
+
+        let search = this.state.searchValue.replace(tagRegex, '').trim().replaceAll(/ +/g, ' ')
+
+        const res = await getPosts({
+            searchValue: this.state.searchValue,
+            selectedOption: this.state.selectedOption,
+            category: this.state.name,
+            tags: [ ...search.matchAll(
+                this.state.searchValue
+                    .replace(tagRegex, '')
+                    .trim()
+                    .replaceAll(/ +/g, ' ')
+            ) ]
+        })
+        if (res.errors) {
+            await errorAlert({
+                title: '글 검색을 실패했습니다'
+            })
+        }
+
+        else {
+            this.setState({
+                allpostslength: res.data.posts.length, 
+                posts: divide(res.data.posts, 10)
             })
         }
     }

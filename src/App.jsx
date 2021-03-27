@@ -5,6 +5,7 @@ import Main from './pages/Main';
 import CallBack from './pages/Callback';
 import About from './pages/About';
 import Categories from './pages/Categories';
+import Posts from './pages/Posts';
 import NoIE from './pages/NoIE';
 import Category from './pages/Category';
 
@@ -40,6 +41,7 @@ class App extends Component {
                             <Route path = '/about' component = {About} />
                             <Route path = '/callback' component = {CallBack} />
                             <Route path = '/categories' component = {Categories} />
+                            <Route path = '/commu' component = {Posts} />
                             <Route path = '/noie' component = {NoIE} />
                             <Route path = '/category/:name' component = {Category} />
                         </Switch>

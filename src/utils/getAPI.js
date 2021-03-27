@@ -1,6 +1,6 @@
 import { req } from "./request"
 
-export const getPosts = async (params) => {
+export const getPosts = async params => {
     const { searchValue, selectedOption, category, tags } = params || {}
     const tagText = tags ? `tags: [${`${tags}`
         .split(',')
@@ -10,7 +10,7 @@ export const getPosts = async (params) => {
     const res = await req({
         query: `
             query {
-                posts${params ? `(${selectedOption ? `searchType: "${selectedOption}",` : ""} ${searchValue ? `searchQuery: "${searchValue}",` : ""} ${tagText} ${category ? `category: "${category}"` : ""})` : ""} {
+                posts${!!Object.keys(params).length ? `(${selectedOption ? `searchType: "${selectedOption}",` : ""} ${searchValue ? `searchQuery: "${searchValue}",` : ""} ${tagText} ${category ? `category: "${category}"` : ""})` : ""} {
                     _id
                     author {
                         username
