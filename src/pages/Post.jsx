@@ -46,6 +46,7 @@ class Post extends Component {
                 }
             `
         })
+        console.log(res)
         if (res.errors || !res.data.post) {
             this.setState({ notFound: true })
         }
@@ -152,6 +153,11 @@ class Post extends Component {
                                                 {this.state.data.content}
                                             </ReactMarkDown>
                                             <div className = 'flex mt-10'>
+                                                <div className = ''>
+                                                    {this.state.data.tag.map(tag => (
+                                                        <div className = 'text-xs inline-flex items-center font-bold leading-sm uppercase px-3 py-1 bg-blue-200 text-blue-700 rounded-full mr-1'>#{tag}</div>
+                                                    ))}
+                                                </div>
                                                 <div className = 'flex-grow' />
                                                 <div className = ''>
                                                     <Link to = {`editpost/${this.state._id}`}>
