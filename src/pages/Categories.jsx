@@ -63,7 +63,6 @@ class Categories extends Component {
             `
         })
         if (res.errors) {
-            console.log(res.errors)
             await errorAlert({
                 title: '카테고리 검색을 실패했습니다'
             })
