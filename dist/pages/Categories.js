@@ -57,7 +57,6 @@ class Categories extends Component {
             `
     });
     if (res.errors) {
-      console.log(res.errors);
       await errorAlert({
         title: "\uCE74\uD14C\uACE0\uB9AC \uAC80\uC0C9\uC744 \uC2E4\uD328\uD588\uC2B5\uB2C8\uB2E4"
       });

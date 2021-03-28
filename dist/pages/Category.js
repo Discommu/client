@@ -89,7 +89,6 @@ class Category extends Component {
       title: "\uC815\uB9D0 \uC0AD\uC81C\uB97C \uD560\uAE4C\uC694?",
       confirmButtonText: "\uC0AD\uC81C"
     });
-    console.log(this.state.name);
     if (res.isConfirmed) {
       const reqResult = await req({
         query: `
@@ -100,7 +99,6 @@ class Category extends Component {
                     }
                 `
       });
-      console.log(reqResult.errors);
       if (reqResult.data && reqResult.data.category.delete) {
         await successAlert({
           title: "\uC0AD\uC81C\uB97C \uC131\uACF5\uD588\uC2B5\uB2C8\uB2E4"

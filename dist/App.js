@@ -1,12 +1,13 @@
 import React, {Component} from "../_snowpack/pkg/react.js";
 import {BrowserRouter, Route, Switch} from "../_snowpack/pkg/react-router-dom.js";
 import Main from "./pages/Main.js";
-import CallBack from "./pages/Callback.js";
+import NoIE from "./pages/NoIE.js";
 import About from "./pages/About.js";
+import CallBack from "./pages/Callback.js";
 import Categories from "./pages/Categories.js";
 import Posts from "./pages/Posts.js";
-import NoIE from "./pages/NoIE.js";
 import Category from "./pages/Category.js";
+import Post from "./pages/Post.js";
 import NavBar from "./components/NavBar.js";
 import Footer from "./components/Footer.js";
 class App extends Component {
@@ -51,6 +52,9 @@ class App extends Component {
     }), /* @__PURE__ */ React.createElement(Route, {
       path: "/category/:name",
       component: Category
+    }), /* @__PURE__ */ React.createElement(Route, {
+      path: "/post/:id",
+      component: Post
     }))), /* @__PURE__ */ React.createElement(Footer, null)));
   }
 }
