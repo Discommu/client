@@ -2,12 +2,15 @@ import React, { Component } from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 
 import Main from './pages/Main';
-import CallBack from './pages/Callback';
+import NoIE from './pages/NoIE';
 import About from './pages/About';
+import CallBack from './pages/Callback';
+
 import Categories from './pages/Categories';
 import Posts from './pages/Posts';
-import NoIE from './pages/NoIE';
+
 import Category from './pages/Category';
+import Post from './pages/Post';
 
 import NavBar from './components/NavBar';
 import Footer from './components/Footer';
@@ -44,6 +47,7 @@ class App extends Component {
                             <Route path = '/commu' component = {Posts} />
                             <Route path = '/noie' component = {NoIE} />
                             <Route path = '/category/:name' component = {Category} />
+                            <Route path = '/post/:id' component = {Post} />
                         </Switch>
                     </div>
                     <Footer />
