@@ -44,10 +44,12 @@ class Post extends Component {
                         }
                         category
                         comments {
+                            _id
                             content
                             timestamp
                             reply
                             author {
+                                avatarURL
                                 id
                                 username
                                 discriminator
@@ -72,7 +74,7 @@ class Post extends Component {
                 authorID: data.author.id,
                 author: `${data.author.username}#${data.author.discriminator}`,
                 category: data.category,
-                comments: data.comments,
+                comments: this.formatComments(data.comments),
                 hearts: data.hearts,
                 views: data.views,
                 tag: data.tag
@@ -110,6 +112,11 @@ class Post extends Component {
         }
     }
 
+    formatComments = comments => comments.map(comment => { return {
+        ...comment,
+        editing: false
+    } }).reverse()
+
     newComment = async e => {
         e.preventDefault()
         if (!this.state.commentContent) return
@@ -130,10 +137,12 @@ class Post extends Component {
                     query {
                         post(id: "${this.state._id}") {
                             comments {
+                                _id
                                 content
                                 timestamp
                                 reply
                                 author {
+                                    avatarURL
                                     id
                                     username
                                     discriminator
@@ -146,7 +155,7 @@ class Post extends Component {
             if (commentsRes.data)
                 this.setState({
                     commentContent: '',
-                    comments:  commentsRes.data.post.comments
+                    comments:  this.formatComments(commentsRes.data.post.comments)
                 })
             else
                 this.setState({
@@ -226,14 +235,16 @@ class Post extends Component {
                                                     {this.state.tag.map(tag => (
                                                         <div className = 'text-xs inline-flex items-center font-bold leading-sm uppercase px-3 py-1 bg-blue-200 text-blue-700 rounded-full mr-1'>#{tag}</div>
                                                     ))}
-                                                </div>
+                                                </div>              
                                                 <div className = 'flex-grow' />
-                                                <div className = ''>
-                                                    <Link to = {`editpost/${this.state._id}`}>
-                                                        <FontAwesomeIcon icon = {faEdit} />
-                                                    </Link>
-                                                    <FontAwesomeIcon className = 'ml-2 cursor-pointer' icon = {faTrash} onClick = {this.postDelete} />
-                                                </div>
+                                                {this.state.authorID === JSON.parse(localStorage.user).id ? (
+                                                    <div className = ''>
+                                                        <Link to = {`editpost/${this.state._id}`}>
+                                                            <FontAwesomeIcon icon = {faEdit} />
+                                                        </Link>
+                                                        <FontAwesomeIcon className = 'ml-2 cursor-pointer' icon = {faTrash} onClick = {this.postDelete} />
+                                                    </div>
+                                                ) : null}
                                             </div>
                                         </div>
                                         <div className = 'px-5 py-5 bg-white border-t flex flex-col xs:flex-row'>
@@ -245,7 +256,7 @@ class Post extends Component {
                                             </div>
                                             <div className = 'flex mx-2 mb-4'>
                                                 <form className = 'bg-white px-4 pt-2 w-full' onSubmit = {this.newComment}>
-                                                    <div className = 'flex flex-wrap -mx-3 mb-6'>
+                                                    <div className = 'flex flex-wrap -mx-3'>
                                                         <div className = 'px-3 mb-2 mt-2 w-full'>
                                                             <textarea value = {this.state.commentContent} className = 'bg-gray-100 rounded border border-gray-400 leading-normal resize-none w-full h-20 py-2 px-3 font-medium placeholder-gray-700 focus:outline-none focus:bg-white' name = 'body' placeholder = '새 댓글' required onChange = {e => {
                                                                 this.setState({ commentContent: e.target.value })
@@ -260,6 +271,28 @@ class Post extends Component {
                                                 </form>
                                             </div>
                                             <div className = ''>
+                                                {this.state.comments.map(comment => (
+                                                    <div className = 'shadow-xl w-full mt-2 px-4 py-2 border-2 border-gray-100 rounded-xl'>
+                                                        <div className = 'flex'>
+                                                            <Link to = {comment.author.id} className = 'flex items-center'>
+                                                                <img src = {comment.author.avatarURL} alt = {'User\'s avatar'} className = 'w-8 h-8 rounded-full mr-2' />
+                                                                <p className = 'font-medium'>{comment.author.username}#{comment.author.discriminator}</p>
+                                                            </Link>
+                                                            <div className = 'flex-grow' />
+                                                            <p className = 'font-medium'>{timetoString(comment.timestamp)}</p>
+                                                        </div>
+                                                        <div className = 'mt-1 flex'>
+                                                            {comment.content}
+                                                            <div className = 'flex-grow' />
+                                                            {comment.author.id === JSON.parse(localStorage.user).id ? (
+                                                                <div className = ''>
+                                                                    <FontAwesomeIcon className = 'ml-2 cursor-pointer' icon = {faEdit} onClick = {() => this.commentEdit(comment._id)} />
+                                                                    <FontAwesomeIcon className = 'ml-2 cursor-pointer' icon = {faTrash} onClick = {() => this.commentDelete(comment._id)} />
+                                                                </div>
+                                                            ) : null}
+                                                        </div>
+                                                    </div>
+                                                ))}
                                             </div>
                                         </div>
                                     </div>
