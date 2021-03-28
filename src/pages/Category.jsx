@@ -100,7 +100,6 @@ class Category extends Component {
             title: '정말 삭제를 할까요?',
             confirmButtonText: '삭제'
         })
-        console.log(this.state.name)
         if (res.isConfirmed) {
             const reqResult = await req({
                 query: `
@@ -112,7 +111,6 @@ class Category extends Component {
                 `
             })
 
-            console.log(reqResult.errors)
             if (reqResult.data && reqResult.data.category.delete) {
                 await successAlert({
                     title: '삭제를 성공했습니다'
