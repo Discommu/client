@@ -6,6 +6,7 @@ import {req} from "../utils/request.js";
 import {errorAlert, successAlert, confirmAlert} from "../utils/alert.js";
 import {FontAwesomeIcon} from "../../_snowpack/pkg/@fortawesome/react-fontawesome.js";
 import {faTrash, faEdit, faComments} from "../../_snowpack/pkg/@fortawesome/free-solid-svg-icons.js";
+import {ThemeProvider} from "../../_snowpack/pkg/styled-components.js";
 class Post extends Component {
   constructor(props) {
     super(props);
@@ -22,7 +23,8 @@ class Post extends Component {
       views: 0,
       tag: [],
       commentContent: null,
-      notFound: false
+      notFound: false,
+      editContent: {}
     };
   }
   async componentDidMount() {
@@ -205,6 +207,8 @@ class Post extends Component {
       }
     }
   };
+  commentEdit = async (id) => {
+  };
   render() {
     return /* @__PURE__ */ React.createElement("div", {
       className: "mt-16"
@@ -264,7 +268,7 @@ class Post extends Component {
       className: "text-xs inline-flex items-center font-bold leading-sm uppercase px-3 py-1 bg-blue-200 text-blue-700 rounded-full mr-1"
     }, "#", tag))), /* @__PURE__ */ React.createElement("div", {
       className: "flex-grow"
-    }), this.state.authorID === JSON.parse(localStorage.user).id ? /* @__PURE__ */ React.createElement("div", {
+    }), localStorage.user && this.state.authorID === JSON.parse(localStorage.user).id ? /* @__PURE__ */ React.createElement("div", {
       className: ""
     }, /* @__PURE__ */ React.createElement(Link, {
       to: `editpost/${this.state._id}`
@@ -328,16 +332,48 @@ class Post extends Component {
       className: "flex-grow"
     }), /* @__PURE__ */ React.createElement("p", {
       className: "font-medium"
-    }, timetoString(comment.timestamp))), /* @__PURE__ */ React.createElement("div", {
+    }, timetoString(comment.timestamp))), comment.editing ? /* @__PURE__ */ React.createElement("div", {
+      className: ""
+    }, /* @__PURE__ */ React.createElement("form", {
+      onSubmit: () => this.commentEdit(comment._id)
+    }, /* @__PURE__ */ React.createElement("input", {
+      placeholder: "\uC218\uC815 \uB0B4\uC6A9",
+      value: comment.content,
+      className: "bg-gray-100 rounded border border-gray-400 leading-normal resize-none w-full h-20 py-2 px-3 font-medium placeholder-gray-700 focus:outline-none focus:bg-white",
+      onChange: (e) => {
+        this.setState((state) => {
+          return {
+            editContent: {
+              ...editContent,
+              [comment._id]: e.target.value
+            }
+          };
+        });
+      }
+    }))) : /* @__PURE__ */ React.createElement("div", {
       className: "mt-1 flex"
     }, comment.content, /* @__PURE__ */ React.createElement("div", {
       className: "flex-grow"
-    }), comment.author.id === JSON.parse(localStorage.user).id ? /* @__PURE__ */ React.createElement("div", {
+    }), localStorage.user && comment.author.id === JSON.parse(localStorage.user).id ? /* @__PURE__ */ React.createElement("div", {
       className: ""
     }, /* @__PURE__ */ React.createElement(FontAwesomeIcon, {
       className: "ml-2 cursor-pointer",
       icon: faEdit,
-      onClick: () => this.commentEdit(comment._id)
+      onClick: () => {
+        this.setState((state) => {
+          return {
+            comments: this.formatComments(state.comments.map((_comment) => {
+              if (_comment._id === comment._id) {
+                const newComment = {
+                  ..._comment,
+                  editing: true
+                };
+                return newComment;
+              }
+            }))
+          };
+        });
+      }
     }), /* @__PURE__ */ React.createElement(FontAwesomeIcon, {
       className: "ml-2 cursor-pointer",
       icon: faTrash,

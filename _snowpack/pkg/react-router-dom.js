@@ -1,6 +1,7 @@
 import { r as react } from './common/index-d0e3fe20.js';
 import { p as propTypes } from './common/index-9b41d826.js';
-import { r as reactIs } from './common/index-c84a4fe9.js';
+import './common/index-c84a4fe9.js';
+import './common/hoist-non-react-statics.cjs-d802aa7f.js';
 import './common/_commonjsHelpers-eb5a497e.js';
 
 function _setPrototypeOf(o, p) {
@@ -1628,25 +1629,6 @@ function _objectWithoutPropertiesLoose(source, excluded) {
 
   return target;
 }
-
-var FORWARD_REF_STATICS = {
-  '$$typeof': true,
-  render: true,
-  defaultProps: true,
-  displayName: true,
-  propTypes: true
-};
-var MEMO_STATICS = {
-  '$$typeof': true,
-  compare: true,
-  defaultProps: true,
-  displayName: true,
-  propTypes: true,
-  type: true
-};
-var TYPE_STATICS = {};
-TYPE_STATICS[reactIs.ForwardRef] = FORWARD_REF_STATICS;
-TYPE_STATICS[reactIs.Memo] = MEMO_STATICS;
 
 // TODO: Replace with React.createContext once we can assume React 16+
 

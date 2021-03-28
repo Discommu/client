@@ -7,6 +7,7 @@
     "react-dom": "./react-dom.js",
     "react-markdown": "./react-markdown.js",
     "react-router-dom": "./react-router-dom.js",
+    "styled-components": "./styled-components.js",
     "sweetalert2": "./sweetalert2.js",
     "sweetalert2-react-content": "./sweetalert2-react-content.js",
     "sweetalert2/dist/sweetalert2.all.min.js": "./sweetalert2/dist/sweetalert2.all.min.js",
