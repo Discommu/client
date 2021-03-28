@@ -169,6 +169,57 @@ class Post extends Component {
         }
     }
 
+    commentDelete = async id => {
+        const res = await confirmAlert({
+            title: '정말 삭제를 할까요?',
+            confirmButtonText: '삭제'
+        })
+        if (res.isConfirmed) {
+            const reqResult = await req({
+                query: `
+                    mutation {
+                        comment(id: "${id}") {
+                            delete
+                        }
+                    }
+                `
+            })
+
+            if (reqResult.data && reqResult.data.comment.delete) {
+                const commentsRes = await req({
+                    query: `
+                        query {
+                            post(id: "${this.state._id}") {
+                                comments {
+                                    _id
+                                    content
+                                    timestamp
+                                    reply
+                                    author {
+                                        avatarURL
+                                        id
+                                        username
+                                        discriminator
+                                    }
+                                }
+                            }
+                        }
+                    `
+                })
+                if (commentsRes.data)
+                    this.setState({
+                        comments:  this.formatComments(commentsRes.data.post.comments)
+                    })
+                
+            }
+            else {
+                await errorAlert({
+                    title: '삭제를 실패했습니다'
+                })
+            }
+        }
+    }
+
     render() {
         return (
             <div className = 'mt-16'>
@@ -274,7 +325,7 @@ class Post extends Component {
                                                 {this.state.comments.map(comment => (
                                                     <div className = 'shadow-xl w-full mt-2 px-4 py-2 border-2 border-gray-100 rounded-xl'>
                                                         <div className = 'flex'>
-                                                            <Link to = {comment.author.id} className = 'flex items-center'>
+                                                            <Link to = {`user/${comment.author.id}`} className = 'flex items-center'>
                                                                 <img src = {comment.author.avatarURL} alt = {'User\'s avatar'} className = 'w-8 h-8 rounded-full mr-2' />
                                                                 <p className = 'font-medium'>{comment.author.username}#{comment.author.discriminator}</p>
                                                             </Link>
