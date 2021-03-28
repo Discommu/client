@@ -8,6 +8,7 @@ import { errorAlert, successAlert, confirmAlert } from '../utils/alert';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTrash, faEdit, faComments } from '@fortawesome/free-solid-svg-icons';
+import { ThemeProvider } from 'styled-components';
 
 class Post extends Component {
     constructor (props) {
@@ -25,7 +26,8 @@ class Post extends Component {
             views: 0,
             tag: [],
             commentContent: null,
-            notFound: false
+            notFound: false,
+            editContent: {}
         };
     }
 
@@ -220,6 +222,8 @@ class Post extends Component {
         }
     }
 
+    commentEdit = async id => {}
+
     render() {
         return (
             <div className = 'mt-16'>
@@ -288,7 +292,7 @@ class Post extends Component {
                                                     ))}
                                                 </div>              
                                                 <div className = 'flex-grow' />
-                                                {this.state.authorID === JSON.parse(localStorage.user).id ? (
+                                                {localStorage.user && (this.state.authorID === JSON.parse(localStorage.user).id) ? (
                                                     <div className = ''>
                                                         <Link to = {`editpost/${this.state._id}`}>
                                                             <FontAwesomeIcon icon = {faEdit} />
@@ -332,16 +336,47 @@ class Post extends Component {
                                                             <div className = 'flex-grow' />
                                                             <p className = 'font-medium'>{timetoString(comment.timestamp)}</p>
                                                         </div>
-                                                        <div className = 'mt-1 flex'>
-                                                            {comment.content}
-                                                            <div className = 'flex-grow' />
-                                                            {comment.author.id === JSON.parse(localStorage.user).id ? (
-                                                                <div className = ''>
-                                                                    <FontAwesomeIcon className = 'ml-2 cursor-pointer' icon = {faEdit} onClick = {() => this.commentEdit(comment._id)} />
-                                                                    <FontAwesomeIcon className = 'ml-2 cursor-pointer' icon = {faTrash} onClick = {() => this.commentDelete(comment._id)} />
-                                                                </div>
-                                                            ) : null}
-                                                        </div>
+                                                        {comment.editing ? (
+                                                            <div className = ''>
+                                                                <form onSubmit = {() => this.commentEdit(comment._id)}>
+                                                                    <input placeholder = '수정 내용' value = {comment.content} className = 'bg-gray-100 rounded border border-gray-400 leading-normal resize-none w-full h-20 py-2 px-3 font-medium placeholder-gray-700 focus:outline-none focus:bg-white' onChange = {e => {
+                                                                        this.setState(state => { return {
+                                                                            editContent: {
+                                                                                ...editContent,
+                                                                                [comment._id]: e.target.value
+                                                                            }
+                                                                        } })
+                                                                    }} />
+                                                                </form>
+                                                            </div>
+                                                        ) : (
+                                                            <div className = 'mt-1 flex'>
+                                                                {comment.content}
+                                                                <div className = 'flex-grow' />
+                                                                {localStorage.user && (comment.author.id === JSON.parse(localStorage.user).id) ? (
+                                                                    <div className = ''>
+                                                                        <FontAwesomeIcon className = 'ml-2 cursor-pointer' icon = {faEdit} onClick = {() => {
+                                                                            this.setState(state => {
+                                                                                return {
+                                                                                    comments: this.formatComments(state.comments
+                                                                                        .map(_comment => {
+                                                                                            if (_comment._id === comment._id) {
+                                                                                                const newComment = {
+                                                                                                    ..._comment,
+                                                                                                    editing: true
+                                                                                                }
+                                                                                                return newComment
+                                                                                            }
+                                                                                        }
+                                                                                    ))
+                                                                                }
+                                                                            })
+                                                                        }} />
+                                                                        <FontAwesomeIcon className = 'ml-2 cursor-pointer' icon = {faTrash} onClick = {() => this.commentDelete(comment._id)} />
+                                                                    </div>
+                                                                ) : null}
+                                                            </div>
+                                                        )}
                                                     </div>
                                                 ))}
                                             </div>
