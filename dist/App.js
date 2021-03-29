@@ -8,6 +8,7 @@ import Categories from "./pages/Categories.js";
 import Posts from "./pages/Posts.js";
 import Category from "./pages/Category.js";
 import Post from "./pages/Post.js";
+import NewCategory from "./pages/NewCategory.js";
 import NavBar from "./components/NavBar.js";
 import Footer from "./components/Footer.js";
 class App extends Component {
@@ -55,6 +56,9 @@ class App extends Component {
     }), /* @__PURE__ */ React.createElement(Route, {
       path: "/post/:id",
       component: Post
+    }), /* @__PURE__ */ React.createElement(Route, {
+      path: "/newcategory",
+      component: NewCategory
     }))), /* @__PURE__ */ React.createElement(Footer, null)));
   }
 }

@@ -264,9 +264,11 @@ class Post extends Component {
       className: "flex mt-10"
     }, /* @__PURE__ */ React.createElement("div", {
       className: ""
-    }, this.state.tag.map((tag) => /* @__PURE__ */ React.createElement("div", {
+    }, this.state.tag.map((tag) => /* @__PURE__ */ React.createElement(Link, {
+      to: `tag/${tag}`
+    }, /* @__PURE__ */ React.createElement("div", {
       className: "text-xs inline-flex items-center font-bold leading-sm uppercase px-3 py-1 bg-blue-200 text-blue-700 rounded-full mr-1"
-    }, "#", tag))), /* @__PURE__ */ React.createElement("div", {
+    }, "#", tag)))), /* @__PURE__ */ React.createElement("div", {
       className: "flex-grow"
     }), localStorage.user && this.state.authorID === JSON.parse(localStorage.user).id ? /* @__PURE__ */ React.createElement("div", {
       className: ""
