@@ -2,7 +2,7 @@ import { req } from "./request"
 
 export const getPosts = async params => {
     const { searchValue, selectedOption, category, tags } = params || {}
-    const tagText = tags ? `tags: [${`${tags}`
+    const tagText = tags ? `tag: [${`${tags}`
         .split(',')
         .map(x => `"${x}"`)
         .join(",")}]` : ""

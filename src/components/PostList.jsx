@@ -78,9 +78,9 @@ class PostList extends Component {
                 <div className = 'text-left sm:flex'>
                     <h2 className = 'text-2xl font-semibold text-gray-900 select-none'>글 목록</h2>
                     <div className = 'sm:flex-grow' />
-                    <Link to = '/newpost' className = 'mr-2'>
+                    <Link to = {`/newpost${!!this.props.category ? `?category=${this.props.category}` : ''}`} className = 'mr-2'>
                         <button className = 'text-sm bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded border-r-2 mb-1 mt-2   sm:mb-0 sm:mt-0'>
-                            만들기!
+                            작성
                         </button>
                     </Link>
          

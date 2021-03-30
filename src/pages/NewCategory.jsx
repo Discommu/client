@@ -52,10 +52,10 @@ class NewCategory extends Component {
                 <form onSubmit = {this.createCategory} className = 'mt-4'>
                     <input className = 'w-full h-10 appearance-none rounded-xl border border-gray-400 block pl-2 py-2 bg-white text-sm placeholder-gray-400 text-gray-700 focus:bg-white focus:placeholder-gray-600 focus:text-gray-700 focus:outline-none' placeholder = '이름' onChange = {e => {
                         this.setState({ name: e.target.value })
-                    }} />
+                    }} required />
                     <input className = 'w-full h-10 mt-2 appearance-none rounded-xl border border-gray-400 block pl-2 py-2 bg-white text-sm placeholder-gray-400 text-gray-700 focus:bg-white focus:placeholder-gray-600 focus:text-gray-700 focus:outline-none' placeholder = '설명' onChange = {e => {
                         this.setState({ description: e.target.value })
-                    }} />
+                    }} required />
                     <button type = 'submit' className = 'w-full h-10 text-sm bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded-xl border-r-2 mt-2'>
                         만들기!
                     </button>

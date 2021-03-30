@@ -13,6 +13,7 @@ import Category from './pages/Category';
 import Post from './pages/Post';
 
 import NewCategory from './pages/NewCategory';
+import NewPost from './pages/NewPost';
 
 import NavBar from './components/NavBar';
 import Footer from './components/Footer';
@@ -51,6 +52,7 @@ class App extends Component {
                             <Route path = '/category/:name' component = {Category} />
                             <Route path = '/post/:id' component = {Post} />
                             <Route path = '/newcategory' component = {NewCategory} />
+                            <Route path = '/newpost' component = {NewPost} />
                         </Switch>
                     </div>
                     <Footer />
