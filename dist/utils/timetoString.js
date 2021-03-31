@@ -1,5 +1,5 @@
 const timetoString = stamp =>
-    new Date(stamp * 1000)
+    new Date(stamp)
     .toLocaleDateString(undefined, {
         year: 'numeric',
         month: '2-digit',

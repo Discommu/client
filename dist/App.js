@@ -9,6 +9,7 @@ import Posts from "./pages/Posts.js";
 import Category from "./pages/Category.js";
 import Post from "./pages/Post.js";
 import NewCategory from "./pages/NewCategory.js";
+import NewPost from "./pages/NewPost.js";
 import NavBar from "./components/NavBar.js";
 import Footer from "./components/Footer.js";
 class App extends Component {
@@ -59,6 +60,9 @@ class App extends Component {
     }), /* @__PURE__ */ React.createElement(Route, {
       path: "/newcategory",
       component: NewCategory
+    }), /* @__PURE__ */ React.createElement(Route, {
+      path: "/newpost",
+      component: NewPost
     }))), /* @__PURE__ */ React.createElement(Footer, null)));
   }
 }

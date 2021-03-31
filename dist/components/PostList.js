@@ -63,11 +63,11 @@ class PostList extends Component {
     }, "\uAE00 \uBAA9\uB85D"), /* @__PURE__ */ React.createElement("div", {
       className: "sm:flex-grow"
     }), /* @__PURE__ */ React.createElement(Link, {
-      to: "/newpost",
+      to: `/newpost${!!this.props.category ? `?category=${this.props.category}` : ""}`,
       className: "mr-2"
     }, /* @__PURE__ */ React.createElement("button", {
       className: "text-sm bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded border-r-2 mb-1 mt-2   sm:mb-0 sm:mt-0"
-    }, "\uB9CC\uB4E4\uAE30!")), /* @__PURE__ */ React.createElement("div", {
+    }, "\uC791\uC131")), /* @__PURE__ */ React.createElement("div", {
       className: "flex sm:flex-row flex-col"
     }, /* @__PURE__ */ React.createElement("div", {
       className: "flex flex-row mb-1 sm:mb-0"
