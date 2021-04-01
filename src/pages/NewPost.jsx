@@ -69,7 +69,7 @@ class NewPost extends Component {
                         this.setState({ content: e.target.value })
                     }} required />
                     <input className = 'w-full h-10 appearance-none mt-2 rounded-l-xl rounded-r-xl border md:rounded-r-none border-gray-400 block pl-2 py-2 bg-white text-sm placeholder-gray-400 text-gray-700 focus:bg-white focus:placeholder-gray-600 focus:text-gray-700 focus:outline-none' placeholder = '태그' onChange = {e => {
-                        this.setState({ tag: e.target.value.split() })
+                        this.setState({ tag: e.target.value.split(' ') })
                     }} required />
                     <button type = 'submit' className = 'w-full h-10 text-sm bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded-xl border-r-2 mt-2'>
                         작성
