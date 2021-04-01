@@ -176,7 +176,7 @@ class Categories extends Component {
     }, category.description)), /* @__PURE__ */ React.createElement("td", {
       className: "px-5 py-5 border-b border-gray-200 bg-white text-sm"
     }, /* @__PURE__ */ React.createElement(Link, {
-      to: `category/${category.name}`
+      to: `/category/${category.name}`
     }, /* @__PURE__ */ React.createElement("button", {
       className: "text-sm bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded border-r-2"
     }, "\uC785\uC7A5"))))))), /* @__PURE__ */ React.createElement("div", {

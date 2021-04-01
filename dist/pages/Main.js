@@ -30,7 +30,7 @@ const Main = () => /* @__PURE__ */ React.createElement("div", {
 }, "DISCOMMU BOT \uCD08\uB300\uD558\uAE30!"))), /* @__PURE__ */ React.createElement("a", {
   href: "https://discord.gg/R5UG5mR"
 }, /* @__PURE__ */ React.createElement("div", {
-  className: "transition duration-200 ease-in-out w-full h-16 pl-6 rounded-xl shadow-2xl flex items-center transform hover:-translate-y-1.5"
+  className: "transition duration-200 ease-in-out w-full h-16 pl-6 rounded-xl shadow-2xl flex items-center transform hover:-translate-y-1.5 mt-2 sm:mt-0"
 }, /* @__PURE__ */ React.createElement("h2", {
   className: "text-lg font-bold ml-6 sm:text-xl"
 }, "Team Kat \uBCF4\uB7EC\uAC00\uAE30!")))));

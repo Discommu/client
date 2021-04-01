@@ -16,7 +16,7 @@ const Footer = () => /* @__PURE__ */ React.createElement("div", {
 }, /* @__PURE__ */ React.createElement("ul", {
   className: "space-y-2"
 }, /* @__PURE__ */ React.createElement("li", null, /* @__PURE__ */ React.createElement(Link, {
-  to: "about",
+  to: "/about",
   className: "font-normal text-base hover:text-gray-100"
 }, "About"))))), /* @__PURE__ */ React.createElement("div", null, /* @__PURE__ */ React.createElement("h5", {
   className: "text-xl font-semibold text-white"

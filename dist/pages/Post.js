@@ -241,7 +241,7 @@ class Post extends Component {
     }, this.state.title)))), /* @__PURE__ */ React.createElement("td", {
       className: "px-5 py-5 border-b border-gray-200 bg-white text-sm"
     }, /* @__PURE__ */ React.createElement(Link, {
-      to: `user/${this.state.authorID}`
+      to: `/user/${this.state.authorID}`
     }, /* @__PURE__ */ React.createElement("p", {
       className: "text-gray-900"
     }, this.state.author))), /* @__PURE__ */ React.createElement("td", {
@@ -251,7 +251,7 @@ class Post extends Component {
     }, this.state.views)), /* @__PURE__ */ React.createElement("td", {
       className: "px-5 py-5 border-b border-gray-200 bg-white text-sm hidden sm:table-cell"
     }, /* @__PURE__ */ React.createElement(Link, {
-      to: `category/${this.state.category}`
+      to: `/category/${this.state.category}`
     }, /* @__PURE__ */ React.createElement("p", {
       className: "text-gray-900"
     }, this.state.category))), /* @__PURE__ */ React.createElement("td", {
@@ -265,7 +265,7 @@ class Post extends Component {
     }, /* @__PURE__ */ React.createElement("div", {
       className: ""
     }, this.state.tag.map((tag) => /* @__PURE__ */ React.createElement(Link, {
-      to: `tag/${tag}`
+      to: `/tag/${tag}`
     }, /* @__PURE__ */ React.createElement("div", {
       className: "text-xs inline-flex items-center font-bold leading-sm uppercase px-3 py-1 bg-blue-200 text-blue-700 rounded-full mr-1"
     }, "#", tag)))), /* @__PURE__ */ React.createElement("div", {
@@ -273,7 +273,7 @@ class Post extends Component {
     }), localStorage.user && this.state.authorID === JSON.parse(localStorage.user).id ? /* @__PURE__ */ React.createElement("div", {
       className: ""
     }, /* @__PURE__ */ React.createElement(Link, {
-      to: `editpost/${this.state._id}`
+      to: `/editpost/${this.state._id}`
     }, /* @__PURE__ */ React.createElement(FontAwesomeIcon, {
       icon: faEdit
     })), /* @__PURE__ */ React.createElement(FontAwesomeIcon, {
@@ -322,7 +322,7 @@ class Post extends Component {
     }, /* @__PURE__ */ React.createElement("div", {
       className: "flex"
     }, /* @__PURE__ */ React.createElement(Link, {
-      to: `user/${comment.author.id}`,
+      to: `/user/${comment.author.id}`,
       className: "flex items-center"
     }, /* @__PURE__ */ React.createElement("img", {
       src: comment.author.avatarURL,

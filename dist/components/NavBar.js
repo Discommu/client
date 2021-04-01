@@ -116,12 +116,12 @@ class NavBar extends Component {
     }, "\uB85C\uADF8\uC778")), this.state.popUp ? /* @__PURE__ */ React.createElement("div", {
       className: "bg-white w-full fixed mt-10 border-b z-50 sm:hidden"
     }, /* @__PURE__ */ React.createElement(Link, {
-      to: "commu",
+      to: "/commu",
       className: "flex cursor-pointer items-center px-4 py-1 w-full h-8 flex text-m text-gray-700 hover:bg-gray-100 hover:text-gray-900"
     }, /* @__PURE__ */ React.createElement("h4", {
       className: "pr-2 select-none"
     }, "\uAC8C\uC2DC\uD310")), /* @__PURE__ */ React.createElement(Link, {
-      to: "categories",
+      to: "/categories",
       className: "border-t flex cursor-pointer items-center px-4 py-1 w-full h-8 flex text-m text-gray-700 hover:bg-gray-100 hover:text-gray-900"
     }, /* @__PURE__ */ React.createElement("h4", {
       className: "pr-2 select-none"
