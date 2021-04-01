@@ -24,7 +24,7 @@ const Main = () => (
                 </div>
             </a>
             <a href = 'https://discord.gg/R5UG5mR'>
-                <div className = 'transition duration-200 ease-in-out w-full h-16 pl-6 rounded-xl shadow-2xl flex items-center transform hover:-translate-y-1.5'>
+                <div className = 'transition duration-200 ease-in-out w-full h-16 pl-6 rounded-xl shadow-2xl flex items-center transform hover:-translate-y-1.5 mt-2 sm:mt-0'>
                     <h2 className = 'text-lg font-bold ml-6 sm:text-xl'>Team Kat 보러가기!</h2>
                 </div>
             </a>
