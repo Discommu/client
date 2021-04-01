@@ -81,7 +81,7 @@ class NewPost extends Component {
       className: "w-full h-10 appearance-none mt-2 rounded-l-xl rounded-r-xl border md:rounded-r-none border-gray-400 block pl-2 py-2 bg-white text-sm placeholder-gray-400 text-gray-700 focus:bg-white focus:placeholder-gray-600 focus:text-gray-700 focus:outline-none",
       placeholder: "\uD0DC\uADF8",
       onChange: (e) => {
-        this.setState({tag: e.target.value.split()});
+        this.setState({tag: e.target.value.split(" ")});
       },
       required: true
     }), /* @__PURE__ */ React.createElement("button", {
