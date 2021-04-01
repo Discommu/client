@@ -169,7 +169,7 @@ class PostList extends Component {
                                                     <p className = 'text-gray-900'>{post.comments.length}</p>
                                                 </td>
                                                 <td className = 'px-5 py-5 border-b border-gray-200 bg-white text-sm'>
-                                                    <Link to = {`post/${post._id}`}>
+                                                    <Link to = {`/post/${post._id}`} replace>
                                                         <button className = 'text-sm bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded border-r-2'>
                                                             입장
                                                         </button>

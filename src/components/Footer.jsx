@@ -12,7 +12,7 @@ const Footer = () => (
                         <nav className = 'mt-4'>
                               <ul className = 'space-y-2'>
                                     <li>
-                                          <Link to = 'about' className = 'font-normal text-base hover:text-gray-100'>About</Link>
+                                          <Link to = '/about' className = 'font-normal text-base hover:text-gray-100'>About</Link>
                                     </li>
                               </ul>
                         </nav>

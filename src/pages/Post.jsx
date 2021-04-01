@@ -263,7 +263,7 @@ class Post extends Component {
                                                         </div>
                                                     </td>
                                                     <td className = 'px-5 py-5 border-b border-gray-200 bg-white text-sm'>
-                                                        <Link to = {`user/${this.state.authorID}`}>
+                                                        <Link to = {`/user/${this.state.authorID}`}>
                                                             <p className = 'text-gray-900'>{this.state.author}</p>
                                                         </Link>
                                                     </td>
@@ -271,7 +271,7 @@ class Post extends Component {
                                                         <p className = 'text-gray-900'>{this.state.views}</p>
                                                     </td>
                                                     <td className = 'px-5 py-5 border-b border-gray-200 bg-white text-sm hidden sm:table-cell'>
-                                                        <Link to = {`category/${this.state.category}`}>
+                                                        <Link to = {`/category/${this.state.category}`}>
                                                             <p className = 'text-gray-900'>{this.state.category}</p>
                                                         </Link>
                                                     </td>
@@ -288,7 +288,7 @@ class Post extends Component {
                                             <div className = 'flex mt-10'>
                                                 <div className = ''>
                                                     {this.state.tag.map(tag => (
-                                                        <Link to = {`tag/${tag}`}>
+                                                        <Link to = {`/tag/${tag}`}>
                                                             <div className = 'text-xs inline-flex items-center font-bold leading-sm uppercase px-3 py-1 bg-blue-200 text-blue-700 rounded-full mr-1'>#{tag}</div>
                                                         </Link>
                                                     ))}
@@ -296,7 +296,7 @@ class Post extends Component {
                                                 <div className = 'flex-grow' />
                                                 {localStorage.user && (this.state.authorID === JSON.parse(localStorage.user).id) ? (
                                                     <div className = ''>
-                                                        <Link to = {`editpost/${this.state._id}`}>
+                                                        <Link to = {`/editpost/${this.state._id}`}>
                                                             <FontAwesomeIcon icon = {faEdit} />
                                                         </Link>
                                                         <FontAwesomeIcon className = 'ml-2 cursor-pointer' icon = {faTrash} onClick = {this.postDelete} />
@@ -331,7 +331,7 @@ class Post extends Component {
                                                 {this.state.comments.map(comment => (
                                                     <div className = 'shadow-xl w-full mt-2 px-4 py-2 border-2 border-gray-100 rounded-xl'>
                                                         <div className = 'flex'>
-                                                            <Link to = {`user/${comment.author.id}`} className = 'flex items-center'>
+                                                            <Link to = {`/user/${comment.author.id}`} className = 'flex items-center'>
                                                                 <img src = {comment.author.avatarURL} alt = {'User\'s avatar'} className = 'w-8 h-8 rounded-full mr-2' />
                                                                 <p className = 'font-medium'>{comment.author.username}#{comment.author.discriminator}</p>
                                                             </Link>
